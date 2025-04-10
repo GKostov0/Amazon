@@ -12,6 +12,8 @@ namespace AMAZON.Combat
         [SerializeField] private Animator _animator;
         [SerializeField][Range(0.0f, 10.0f)] private float _weaponRange;
         [SerializeField][Range(0.0f, 10.0f)] private float _timeBetweenAttacks;
+        [SerializeField] private GameObject _weaponPrefab = null;
+        [SerializeField] private Transform _weaponSocket = null;
 
         [InfoBox("Min Max Weapon Damage")]
         [MinMaxSlider(0, 50, true)]
@@ -20,6 +22,13 @@ namespace AMAZON.Combat
         private Health _target;
 
         private float _timeSinceLastAttack = Mathf.Infinity;
+
+        private void SpawnWeapon() => Instantiate(_weaponPrefab, _weaponSocket);
+
+        private void Start()
+        {
+            SpawnWeapon();
+        }
 
         private void Update()
         {
