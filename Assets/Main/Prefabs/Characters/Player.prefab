@@ -81,6 +81,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7497555075031955137, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: bcfc20b330384224580d08bb688daa48, type: 2}
+    - target: {fileID: 7497555075031955137, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
+      propertyPath: _defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 21a00684b9f008b4a9dcf5337542db32, type: 2}
+    - target: {fileID: 7497555075031955137, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
       propertyPath: _weaponDamage.x
       value: 1
       objectReference: {fileID: 0}
@@ -88,6 +96,10 @@ PrefabInstance:
       propertyPath: _weaponDamage.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7497555075031955137, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
+      propertyPath: _animatorOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: e015f37dd564cd7469c1b247d8de7fdf, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6440335921705149048, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
@@ -131,6 +143,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5983475435390184308, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5487015914950857172}
+    - targetCorrespondingSourceObject: {fileID: 5983475435390184308, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6234946998527485969}
   m_SourcePrefab: {fileID: 100100000, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
 --- !u!95 &3405775561574416773 stripped
 Animator:
@@ -215,7 +230,34 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.6, z: 0.5}
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!54 &6234946998527485969
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789433989785067614}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7295219608189664747 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7497555075031955137, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}

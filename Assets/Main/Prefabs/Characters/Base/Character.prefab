@@ -1341,11 +1341,9 @@ MonoBehaviour:
   _mover: {fileID: 4658216259952937902}
   _actionScheduler: {fileID: 4490278798185038503}
   _animator: {fileID: 2482266097440950959}
-  _weaponRange: 1.5
   _timeBetweenAttacks: 1
-  _weaponPrefab: {fileID: 8496016767697721106, guid: 556e28b0ee633ec4b8b72a8c7381ccbd, type: 3}
   _weaponSocket: {fileID: 3480718407461833335}
-  _weaponDamage: {x: 0, y: 0}
+  _defaultWeapon: {fileID: 11400000, guid: 21a00684b9f008b4a9dcf5337542db32, type: 2}
 --- !u!114 &4490278798185038503
 MonoBehaviour:
   m_ObjectHideFlags: 0

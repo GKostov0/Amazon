@@ -10,24 +10,20 @@ namespace AMAZON.Combat
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _actionScheduler;
         [SerializeField] private Animator _animator;
-        [SerializeField][Range(0.0f, 10.0f)] private float _weaponRange;
         [SerializeField][Range(0.0f, 10.0f)] private float _timeBetweenAttacks;
-        [SerializeField] private GameObject _weaponPrefab = null;
         [SerializeField] private Transform _weaponSocket = null;
 
-        [InfoBox("Min Max Weapon Damage")]
-        [MinMaxSlider(0, 50, true)]
-        [SerializeField] private Vector2 _weaponDamage;
+        [SerializeField] private WeaponSO _defaultWeapon = null;
+
+        private WeaponSO _currentWeapon;
 
         private Health _target;
 
         private float _timeSinceLastAttack = Mathf.Infinity;
 
-        private void SpawnWeapon() => Instantiate(_weaponPrefab, _weaponSocket);
-
         private void Start()
         {
-            SpawnWeapon();
+            EquipWeapon(_defaultWeapon);
         }
 
         private void Update()
@@ -46,6 +42,12 @@ namespace AMAZON.Combat
                 AttackBehaviour();
                 _mover.Cancel();
             }
+        }
+
+        public void EquipWeapon(WeaponSO weapon)
+        {
+            _currentWeapon = weapon;
+            weapon.Spawn(_weaponSocket, _animator);
         }
 
         private void AttackBehaviour()
@@ -69,7 +71,7 @@ namespace AMAZON.Combat
 
         private bool IsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _weaponRange;
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.GetWeaponRange();
         }
 
         public void Cancel()
@@ -104,7 +106,7 @@ namespace AMAZON.Combat
         {
             if (_target != null)
             {
-                _target.TakeDamege(Random.Range(_weaponDamage.x, _weaponDamage.y));
+                _target.TakeDamege(Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
             }
         }
     }
