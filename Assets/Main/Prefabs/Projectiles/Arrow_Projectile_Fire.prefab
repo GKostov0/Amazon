@@ -122,6 +122,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9efedd2a02a24ac479e285d244f6b34e, type: 2}
+    - target: {fileID: 1540734367257725173, guid: 92d793028439c094a9c1cf1ef4ff0f50, type: 3}
+      propertyPath: _isHoaming
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4637276409851723481, guid: 92d793028439c094a9c1cf1ef4ff0f50, type: 3}
       propertyPath: m_Name
       value: Arrow_Projectile_Fire

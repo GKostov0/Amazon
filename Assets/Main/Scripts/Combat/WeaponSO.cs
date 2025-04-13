@@ -27,6 +27,8 @@ namespace AMAZON.Combat
 
         [SerializeField] private bool _isRightHand = true;
 
+        private const string weaponName = "Weapon";
+
         public Vector2 GetWeaponDamage() => _weaponDamage;
         public float GetWeaponRange() => _weaponRange;
 
@@ -36,8 +38,13 @@ namespace AMAZON.Combat
 
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
+            DestroyOldWeapon(rightHand, leftHand);
+
             if (_weaponPrefab)
-                Instantiate(_weaponPrefab, GetHandTransform(rightHand, leftHand));
+            {
+                GameObject weapon = Instantiate(_weaponPrefab, GetHandTransform(rightHand, leftHand));
+                weapon.name = weaponName;
+            }
 
             if (_animatorOverride)
                 animator.runtimeAnimatorController = _animatorOverride;
@@ -47,6 +54,20 @@ namespace AMAZON.Combat
         {
             Projectile projectile = Instantiate(_projectile, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
             projectile.SetTarget(target, Random.Range(_weaponDamage.x, _weaponDamage.y));
+        }
+
+        private void DestroyOldWeapon(Transform rHand, Transform lHand)
+        {
+            Transform oldWeapon = rHand.Find(weaponName);
+            if (oldWeapon == null)
+            {
+                oldWeapon = lHand.Find(weaponName);
+            }
+
+            if (oldWeapon == null) return;
+
+            oldWeapon.name = "DESTROYING";
+            Destroy(oldWeapon.gameObject);
         }
     }
 }

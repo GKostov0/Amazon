@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 30
   _collider: {fileID: 116470921614513253}
+  _isHoaming: 1
 --- !u!65 &116470921614513253
 BoxCollider:
   m_ObjectHideFlags: 0
