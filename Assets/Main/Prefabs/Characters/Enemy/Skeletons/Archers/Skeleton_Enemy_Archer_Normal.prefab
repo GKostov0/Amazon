@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4681296893008913235
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2164782889211970582, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e1235b2e417983469723d36f05de88d, type: 2}
+    - target: {fileID: 4107224610301342763, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298517089992478611, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298517089992478611, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_Size.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631453732906286998, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_Name
+      value: Skeleton_Enemy_Archer_Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665562166809522455, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106436661729886918, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _chaseDistance
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106436661729886918, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _suspicionTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106436661729886918, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _dwellingTime.x
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106436661729886918, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _dwellingTime.y
+      value: 9.318182
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106436661729886918, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _waypointTolerance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106436661729886918, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _patrolSpeedFraction
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440811112578736675, guid: 981edebd967561b46998d991a2659002, type: 3}
+      propertyPath: _defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: a13b02b9ea49d4b40bf037e9a12b5b0d, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 981edebd967561b46998d991a2659002, type: 3}

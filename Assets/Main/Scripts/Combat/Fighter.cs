@@ -1,6 +1,5 @@
 using AMAZON.Core;
 using AMAZON.Movement;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace AMAZON.Combat
@@ -11,7 +10,8 @@ namespace AMAZON.Combat
         [SerializeField] private ActionScheduler _actionScheduler;
         [SerializeField] private Animator _animator;
         [SerializeField][Range(0.0f, 10.0f)] private float _timeBetweenAttacks;
-        [SerializeField] private Transform _weaponSocket = null;
+        [SerializeField] private Transform _rightHandSocket = null;
+        [SerializeField] private Transform _leftHandSocket = null;
 
         [SerializeField] private WeaponSO _defaultWeapon = null;
 
@@ -47,7 +47,7 @@ namespace AMAZON.Combat
         public void EquipWeapon(WeaponSO weapon)
         {
             _currentWeapon = weapon;
-            weapon.Spawn(_weaponSocket, _animator);
+            weapon.Spawn(_rightHandSocket, _leftHandSocket, _animator);
         }
 
         private void AttackBehaviour()
@@ -104,7 +104,13 @@ namespace AMAZON.Combat
         // Animation Event
         private void Hit()
         {
-            if (_target != null)
+            if (_target == null) return;
+            
+            if (_currentWeapon.HasProjectile())
+            {
+                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, _target);
+            }
+            else
             {
                 _target.TakeDamege(Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
             }

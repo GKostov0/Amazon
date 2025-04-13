@@ -8,11 +8,14 @@ namespace AMAZON.Core
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private ActionScheduler _actionScheduler;
+        [SerializeField] private Transform _model;
         [SerializeField][Range(0.0f, 1000.0f)] private float _health = 100.0f;
 
         private bool _isDead;
 
         public bool IsDead() => _isDead;
+        public Transform GetModel() => _model;
+
         public JToken CaptureAsJToken() => JToken.FromObject(_health);
         public void RestoreFromJToken(JToken state)
         {
