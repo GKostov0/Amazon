@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a57b5d56691fa4a881b8ddbecd90ac, type: 3}
+  m_Name: FireStaff
+  m_EditorClassIdentifier: 
+  _animatorOverride: {fileID: 22100000, guid: 1004ae0cf3da9f747a2766af47562e3f, type: 2}
+  _weaponPrefab: {fileID: 3645958750487709651, guid: e7937f21028a0a644ad2183680115390, type: 3}
+  _projectile: {fileID: 6540078043648450176, guid: 14e1105c1228d4b48b56733e68bfd1d9, type: 3}
+  _weaponRange: 10
+  _weaponDamage: {x: 9, y: 12}
+  _isRightHand: 1
