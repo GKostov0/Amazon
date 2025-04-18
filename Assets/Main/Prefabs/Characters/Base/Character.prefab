@@ -1413,6 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingLevel: 1
   _charecterClass: 0
+  _progression: {fileID: 11400000, guid: 2927a9a325feadd459fe95b4e3ae3513, type: 2}
 --- !u!1 &6174930934079904636
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace AMAZON.Stats
@@ -6,5 +7,8 @@ namespace AMAZON.Stats
     {
         [SerializeField][Range(1, 40)] private int _startingLevel = 1;
         [SerializeField] private ECharecterClass _charecterClass;
+
+        [AssetsOnly]
+        [SerializeField] private ProgressionSO _progression = null;
     }
 }
