@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: _patrolSpeedFraction
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8676992289179030714, guid: 07997af7d23396145bdec93abd61b860, type: 3}
+      propertyPath: _charecterClass
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9142901919209242529, guid: 07997af7d23396145bdec93abd61b860, type: 3}
       propertyPath: _defaultWeapon
       value: 

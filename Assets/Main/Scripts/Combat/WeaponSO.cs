@@ -46,8 +46,12 @@ namespace AMAZON.Combat
                 weapon.name = weaponName;
             }
 
+            var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+
             if (_animatorOverride)
                 animator.runtimeAnimatorController = _animatorOverride;
+            else if (overrideController != null)
+                animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
         }
 
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)

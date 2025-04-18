@@ -67,3 +67,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 11400000, guid: 21a00684b9f008b4a9dcf5337542db32, type: 2}
+  _respawnTime: 5
+  _collider: {fileID: 1022033740778018552}

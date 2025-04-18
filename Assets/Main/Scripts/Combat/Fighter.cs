@@ -1,10 +1,12 @@
 using AMAZON.Core;
 using AMAZON.Movement;
+using AMAZON.Saving;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace AMAZON.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _actionScheduler;
@@ -21,9 +23,13 @@ namespace AMAZON.Combat
 
         private float _timeSinceLastAttack = Mathf.Infinity;
 
+        public JToken CaptureAsJToken() => _currentWeapon.name;
+        public void RestoreFromJToken(JToken state) => EquipWeapon(Resources.Load<WeaponSO>((string)state));
+
         private void Start()
         {
-            EquipWeapon(_defaultWeapon);
+            if (_currentWeapon == null)
+                EquipWeapon(_defaultWeapon);
         }
 
         private void Update()
