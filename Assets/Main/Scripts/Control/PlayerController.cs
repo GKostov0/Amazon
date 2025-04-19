@@ -1,7 +1,7 @@
 using UnityEngine;
 using AMAZON.Movement;
 using AMAZON.Combat;
-using AMAZON.Core;
+using AMAZON.Attributes;
 
 namespace AMAZON.Control
 {

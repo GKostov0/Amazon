@@ -1,9 +1,10 @@
 using AMAZON.Combat;
 using AMAZON.Core;
 using AMAZON.Movement;
+using AMAZON.Attributes;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Diagnostics;
+
 
 namespace AMAZON.Control
 {

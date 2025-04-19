@@ -1,6 +1,7 @@
 using AMAZON.Core;
 using AMAZON.Movement;
 using AMAZON.Saving;
+using AMAZON.Attributes;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 

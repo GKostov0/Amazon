@@ -1,4 +1,4 @@
-using AMAZON.Core;
+using AMAZON.Attributes;
 using UnityEngine;
 
 namespace AMAZON.Combat

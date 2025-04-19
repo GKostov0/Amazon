@@ -1,6 +1,6 @@
 namespace AMAZON.Stats
 {
-    public enum ECharecterClass
+    public enum ECharacterClass
     {
         None = 0,
         Player = 1,

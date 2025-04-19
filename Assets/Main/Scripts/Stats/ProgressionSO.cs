@@ -1,3 +1,5 @@
+using Sirenix.OdinInspector;
+using System.Linq;
 using UnityEngine;
 
 namespace AMAZON.Stats
@@ -5,13 +7,13 @@ namespace AMAZON.Stats
     [CreateAssetMenu(fileName = "NewProgression", menuName = "Stats/Progression")]
     public class ProgressionSO : ScriptableObject
     {
-        [SerializeField] private CharacterProgression[] _characterClasses = null;
+        [AssetsOnly]
+        [InlineEditor(InlineEditorModes.GUIAndHeader)]
+        [SerializeField] private CharacterProgressionSO[] _characterClasses = null;
 
-        [System.Serializable]
-        private class CharacterProgression
+        public float GetHealth(ECharacterClass characterClass, int level)
         {
-            [SerializeField] private ECharecterClass _characterClass;
-            [SerializeField] private float[] _health;
+            return _characterClasses.FirstOrDefault(x => x.CharacterClass.Equals(characterClass)).HealthPoints[level - 1];
         }
     }
 }

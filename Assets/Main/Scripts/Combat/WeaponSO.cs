@@ -1,4 +1,4 @@
-using AMAZON.Core;
+using AMAZON.Attributes;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

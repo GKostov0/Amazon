@@ -1,7 +1,8 @@
 using AMAZON.Core;
+using AMAZON.Saving;
+using AMAZON.Attributes;
 using UnityEngine;
 using UnityEngine.AI;
-using AMAZON.Saving;
 using Newtonsoft.Json.Linq;
 
 namespace AMAZON.Movement

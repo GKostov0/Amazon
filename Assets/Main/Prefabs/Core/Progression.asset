@@ -13,18 +13,7 @@ MonoBehaviour:
   m_Name: Progression
   m_EditorClassIdentifier: 
   _characterClasses:
-  - _characterClass: 1
-    _health:
-    - 10
-    - 12
-    - 20
-    - 0
-  - _characterClass: 2
-    _health:
-    - 12
-  - _characterClass: 3
-    _health:
-    - 8
-  - _characterClass: 4
-    _health:
-    - 8
+  - {fileID: 11400000, guid: 56277333f7764cf4b81ec380b93bccfb, type: 2}
+  - {fileID: 11400000, guid: 22aca2363bb04f241b10eaf017da640d, type: 2}
+  - {fileID: 11400000, guid: 3626e312e7310b64883ca7865da4926e, type: 2}
+  - {fileID: 11400000, guid: 835d0f48d956f2b42bbfaac89de8fdfd, type: 2}

@@ -1,5 +1,5 @@
 using UnityEngine;
-using AMAZON.Core;
+using AMAZON.Attributes;
 
 namespace AMAZON.Combat
 {

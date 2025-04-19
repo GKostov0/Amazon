@@ -1243,6 +1243,7 @@ GameObject:
   - component: {fileID: 2259741957382998268}
   - component: {fileID: 8464839764961824635}
   - component: {fileID: 7963605236127440346}
+  - component: {fileID: 2944306751856940847}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   _navMeshAgent: {fileID: 4404875197661716732}
   _animator: {fileID: 2482266097440950959}
   _actionScheduler: {fileID: 4490278798185038503}
-  _health: {fileID: 0}
+  _health: {fileID: 2944306751856940847}
   _maxSpeed: 6
 --- !u!114 &7497555075031955137
 MonoBehaviour:
@@ -1414,6 +1415,23 @@ MonoBehaviour:
   _startingLevel: 1
   _charecterClass: 0
   _progression: {fileID: 11400000, guid: 2927a9a325feadd459fe95b4e3ae3513, type: 2}
+--- !u!114 &2944306751856940847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983475435390184308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544053dda60d4aa44b819020a192f881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2482266097440950959}
+  _actionScheduler: {fileID: 4490278798185038503}
+  _model: {fileID: 4931633995107201451}
+  _baseStats: {fileID: 7963605236127440346}
+  _health: 100
 --- !u!1 &6174930934079904636
 GameObject:
   m_ObjectHideFlags: 0
