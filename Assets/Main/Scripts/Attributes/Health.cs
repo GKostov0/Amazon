@@ -20,6 +20,7 @@ namespace AMAZON.Attributes
         public bool IsDead() => _isDead;
         public Transform GetModel() => _model;
         public JToken CaptureAsJToken() => JToken.FromObject(_health);
+        public float GetHealthPercent() => 100.0f * (_health / _baseStats.GetHealth());
 
         private void Start()
         {
