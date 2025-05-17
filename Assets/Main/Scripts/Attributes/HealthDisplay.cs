@@ -1,4 +1,5 @@
 using AMAZON.Attributes;
+using AMAZON.Combat;
 using TMPro;
 using UnityEngine;
 
@@ -10,19 +11,22 @@ namespace AMAZON.UI
         [SerializeField] private TextMeshProUGUI _targetHealthText;
 
         private Health _playerHealth;
-        private Health _targetHealth;
+        private Fighter _playerFighter;
 
-        private void Awake()
+        private void Start()
         {
             _playerHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
+            _playerFighter = GameObject.FindWithTag("Player").GetComponent<Fighter>();
         }
 
         private void Update()
         {
             _playerHealthText.SetText(string.Format("Health: {0:0.0}%", _playerHealth.GetHealthPercent()));
 
-            if (_targetHealth)
-                _targetHealthText.SetText(string.Format("Target: {0:0.0}%", _targetHealth.GetHealthPercent()));
+            if (_playerFighter.Target)
+                _targetHealthText.SetText(string.Format("Target: {0:0.0}%", _playerFighter.Target.GetHealthPercent()));
+            else
+                _targetHealthText.SetText("[-]");
         }
     }
 }

@@ -16,6 +16,7 @@ namespace AMAZON.Combat
         private float _damage = 0;
         private float _targetOffset;
         private Vector3 _targetPosition;
+        private GameObject _instigator = null;
 
         private bool FlipCoin() => Random.value < 0.5f;
         private float GetOffset() => Random.Range(0.3f, 0.7f);
@@ -40,10 +41,11 @@ namespace AMAZON.Combat
             transform.Translate(_speed * Time.deltaTime * Vector3.forward);
         }
 
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(Health target, GameObject instigator, float damage)
         {
             _target = target;
             _damage = damage;
+            _instigator = instigator;
         }
 
         private Vector3 GetAimLocation()
@@ -70,7 +72,7 @@ namespace AMAZON.Combat
             {
                 HandlePArticleEffects();
 
-                _target.TakeDamege(_damage);
+                _target.TakeDamege(_instigator, _damage);
                 transform.parent = health.GetModel();
 
                 _speed = 0.0f;

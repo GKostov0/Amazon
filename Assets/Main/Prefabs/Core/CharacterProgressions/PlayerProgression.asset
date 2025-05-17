@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: PlayerProgression
   m_EditorClassIdentifier: 
   <CharacterClass>k__BackingField: 1
-  <HealthPoints>k__BackingField:
-  - 1000
-  - 12
-  - 15
+  <stats>k__BackingField:
+  - stat: 1
+    levels:
+    - 2000
+    - 3000
+    - 5000
+  - stat: 2
+    levels:
+    - 100
+    - 180
+    - 290

@@ -20,7 +20,7 @@ namespace AMAZON.Combat
 
         private WeaponSO _currentWeapon;
 
-        private Health _target;
+        public Health Target { get; private set; }
 
         private float _timeSinceLastAttack = Mathf.Infinity;
 
@@ -37,12 +37,12 @@ namespace AMAZON.Combat
         {
             _timeSinceLastAttack += Time.deltaTime;
 
-            if (_target == null) return;
-            if (_target.IsDead()) return;
+            if (Target == null) return;
+            if (Target.IsDead()) return;
 
             if (!IsInRange())
             {
-                _mover.MoveTo(_target.transform.position, 1.0f);
+                _mover.MoveTo(Target.transform.position, 1.0f);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace AMAZON.Combat
 
         private void AttackBehaviour()
         {
-            transform.LookAt(_target.transform);
+            transform.LookAt(Target.transform);
             
             if (_timeSinceLastAttack >= _timeBetweenAttacks)
             {
@@ -78,12 +78,12 @@ namespace AMAZON.Combat
 
         private bool IsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.GetWeaponRange();
+            return Vector3.Distance(transform.position, Target.transform.position) < _currentWeapon.GetWeaponRange();
         }
 
         public void Cancel()
         {
-            _target = null;
+            Target = null;
             StopAttackAnimation();
             _mover.Cancel();
         }
@@ -97,7 +97,7 @@ namespace AMAZON.Combat
         public void Attack(GameObject target)
         {
             _actionScheduler.StartAction(this);
-            _target = target.GetComponent<Health>();
+            Target = target.GetComponent<Health>();
         }
 
         public bool CanAttack(GameObject target)
@@ -111,15 +111,15 @@ namespace AMAZON.Combat
         // Animation Event
         private void Hit()
         {
-            if (_target == null) return;
+            if (Target == null) return;
             
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, _target);
+                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target, gameObject);
             }
             else
             {
-                _target.TakeDamege(Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
+                Target.TakeDamege(gameObject, Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
             }
         }
     }

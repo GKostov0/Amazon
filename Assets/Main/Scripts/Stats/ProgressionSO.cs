@@ -11,9 +11,12 @@ namespace AMAZON.Stats
         [InlineEditor(InlineEditorModes.GUIAndHeader)]
         [SerializeField] private CharacterProgressionSO[] _characterClasses = null;
 
-        public float GetHealth(ECharacterClass characterClass, int level)
+        public float GetStat(EStat stat, ECharacterClass characterClass, int level)
         {
-            return _characterClasses.FirstOrDefault(x => x.CharacterClass.Equals(characterClass)).HealthPoints[level - 1];
+            CharacterProgressionSO characterContext = _characterClasses.FirstOrDefault(x => x.CharacterClass.Equals(characterClass));
+            ProgressionStat statContext = characterContext.stats.FirstOrDefault(x => x.stat.Equals(stat));
+
+            return statContext.levels[level - 1];
         }
     }
 }

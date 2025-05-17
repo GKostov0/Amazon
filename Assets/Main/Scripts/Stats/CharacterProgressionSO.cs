@@ -7,6 +7,6 @@ namespace AMAZON.Stats
     public class CharacterProgressionSO : ScriptableObject
     {
         [field: SerializeField] public ECharacterClass CharacterClass { get; private set; }
-        [field: SerializeField] public float[] HealthPoints { get; private set; }
+        [field: SerializeField] public ProgressionStat[] stats { get; private set; }
     }
 }

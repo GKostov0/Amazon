@@ -11,6 +11,6 @@ namespace AMAZON.Stats
         [AssetsOnly]
         [SerializeField] private ProgressionSO _progression = null;
 
-        public float GetHealth() => _progression.GetHealth(_charecterClass, _startingLevel);
+        public float GetStat(EStat stat) => _progression.GetStat(stat, _charecterClass, _startingLevel);
     }
 }
