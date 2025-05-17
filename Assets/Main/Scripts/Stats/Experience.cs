@@ -1,16 +1,16 @@
 using AMAZON.Saving;
 using Newtonsoft.Json.Linq;
-using Sirenix.OdinInspector;
+using UniRx;
 using UnityEngine;
 
 namespace AMAZON.Stats
 {
     public class Experience : MonoBehaviour, ISaveable
     {
-        [ReadOnly][SerializeField] private float _experiencePoints = 0.0f;
+        public ReactiveProperty<float> ExperiencePoints { get; private set; } = new ReactiveProperty<float>();
 
-        public JToken CaptureAsJToken() => JToken.FromObject(_experiencePoints);
-        public void RestoreFromJToken(JToken state) => _experiencePoints = state.ToObject<float>();
-        public void GainExperience(float xp) => _experiencePoints += xp;
+        public JToken CaptureAsJToken() => JToken.FromObject(ExperiencePoints.Value);
+        public void RestoreFromJToken(JToken state) => ExperiencePoints.Value = state.ToObject<float>();
+        public void GainExperience(float xp) => ExperiencePoints.Value += xp;
     }
 }

@@ -4,6 +4,7 @@ using AMAZON.Saving;
 using AMAZON.Attributes;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UniRx;
 
 namespace AMAZON.Combat
 {
@@ -20,7 +21,7 @@ namespace AMAZON.Combat
 
         private WeaponSO _currentWeapon;
 
-        public Health Target { get; private set; }
+        public ReactiveProperty<Health> Target { get; private set; } = new ReactiveProperty<Health>();
 
         private float _timeSinceLastAttack = Mathf.Infinity;
 
@@ -37,12 +38,12 @@ namespace AMAZON.Combat
         {
             _timeSinceLastAttack += Time.deltaTime;
 
-            if (Target == null) return;
-            if (Target.IsDead()) return;
+            if (Target.Value == null) return;
+            if (Target.Value.IsDead()) return;
 
             if (!IsInRange())
             {
-                _mover.MoveTo(Target.transform.position, 1.0f);
+                _mover.MoveTo(Target.Value.transform.position, 1.0f);
             }
             else
             {
@@ -59,7 +60,7 @@ namespace AMAZON.Combat
 
         private void AttackBehaviour()
         {
-            transform.LookAt(Target.transform);
+            transform.LookAt(Target.Value.transform);
             
             if (_timeSinceLastAttack >= _timeBetweenAttacks)
             {
@@ -72,18 +73,19 @@ namespace AMAZON.Combat
         {
             _animator.ResetTrigger("stopAttack");
 
-            // This will trigger the Hit() event
+            // This will trigger the Hit() Method
             _animator.SetTrigger("attack");
         }
 
         private bool IsInRange()
         {
-            return Vector3.Distance(transform.position, Target.transform.position) < _currentWeapon.GetWeaponRange();
+            return Vector3.Distance(transform.position, Target.Value.transform.position) < _currentWeapon.GetWeaponRange();
         }
 
         public void Cancel()
         {
-            Target = null;
+            Target.Value = null;
+
             StopAttackAnimation();
             _mover.Cancel();
         }
@@ -97,7 +99,7 @@ namespace AMAZON.Combat
         public void Attack(GameObject target)
         {
             _actionScheduler.StartAction(this);
-            Target = target.GetComponent<Health>();
+            Target.Value = target.GetComponent<Health>();
         }
 
         public bool CanAttack(GameObject target)
@@ -111,15 +113,15 @@ namespace AMAZON.Combat
         // Animation Event
         private void Hit()
         {
-            if (Target == null) return;
+            if (Target.Value == null) return;
             
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target, gameObject);
+                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target.Value, gameObject);
             }
             else
             {
-                Target.TakeDamege(gameObject, Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
+                Target.Value.TakeDamege(gameObject, Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
             }
         }
     }
