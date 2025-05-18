@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace AMAZON.UI
 {
-
     public class PlayerExperienceDisplay : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _experienceText;
@@ -23,6 +22,5 @@ namespace AMAZON.UI
             })
             .AddTo(this);
         }
-
     }
 }

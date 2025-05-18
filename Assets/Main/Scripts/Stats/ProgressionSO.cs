@@ -23,6 +23,14 @@ namespace AMAZON.Stats
             return (levels.Length < level) ? 0.0f : levels[level - 1];
         }
 
+        public int GetLevels(EStat stat, ECharacterClass characterClass)
+        {
+            BuildLookupTable();
+            
+            float[] levels = _lookupTable[characterClass][stat];
+            return levels.Length;
+        }
+
         private void BuildLookupTable()
         {
             if (_lookupTable != null) return;

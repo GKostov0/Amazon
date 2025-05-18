@@ -2,7 +2,6 @@ using AMAZON.Core;
 using AMAZON.Saving;
 using AMAZON.Stats;
 using Newtonsoft.Json.Linq;
-using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
 
@@ -24,6 +23,11 @@ namespace AMAZON.Attributes
         public Transform GetModel() => _model;
         public JToken CaptureAsJToken() => JToken.FromObject(CurrentHealth.Value);
         public float GetHealthPercent() => 100.0f * (CurrentHealth.Value / _baseStats.GetStat(EStat.Health));
+
+        private void Start()
+        {
+            CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
+        }
 
         public void RestoreFromJToken(JToken state)
         {
