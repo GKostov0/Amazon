@@ -1,4 +1,3 @@
-using AMAZON.Attributes;
 using AMAZON.Stats;
 using TMPro;
 using UniRx;
