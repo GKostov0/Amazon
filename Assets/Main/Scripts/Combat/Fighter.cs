@@ -6,10 +6,11 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UniRx;
 using AMAZON.Stats;
+using System.Collections.Generic;
 
 namespace AMAZON.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _actionScheduler;
@@ -58,6 +59,14 @@ namespace AMAZON.Combat
         {
             _currentWeapon = weapon;
             weapon.Spawn(_rightHandSocket, _leftHandSocket, _animator);
+        }
+
+        public IEnumerable<float> GetAdditiveModifier(EStat stat)
+        {
+            if (stat.Equals(EStat.Damage))
+            {
+                yield return Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y);
+            }
         }
 
         private void AttackBehaviour()
@@ -124,7 +133,6 @@ namespace AMAZON.Combat
             else
             {
                 Target.Value.TakeDamege(gameObject, _baseStats.GetStat(EStat.Damage));
-                //Target.Value.TakeDamege(gameObject, Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
             }
         }
     }

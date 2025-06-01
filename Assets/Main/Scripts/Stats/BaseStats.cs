@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UniRx;
-using System.Collections;
 
 namespace AMAZON.Stats
 {
@@ -17,9 +17,9 @@ namespace AMAZON.Stats
 
         public ReactiveProperty<int> CurrentLevel { get; private set; } = new ReactiveProperty<int>();
 
-        public float GetStat(EStat stat) => _progression.GetStat(stat, _charecterClass, CalculateLevel());
+        public float GetStat(EStat stat) => _progression.GetStat(stat, _charecterClass, CurrentLevel.Value) + GetAdditiveModifier(stat);
 
-        private void Start()
+        private void Awake()
         {
             CurrentLevel.Value = CalculateLevel();
 
@@ -31,6 +31,21 @@ namespace AMAZON.Stats
                 })
                 .AddTo(this);
             }
+        }
+
+        private float GetAdditiveModifier(EStat stat)
+        {
+            float totalResult = 0;
+
+            GetComponents<IModifierProvider>().ForEach(provider => 
+            {
+                provider.GetAdditiveModifier(stat).ForEach(modifier => 
+                {
+                    totalResult += modifier;
+                });
+            });
+
+            return totalResult;
         }
 
         private void UpdateLevel()
@@ -49,7 +64,7 @@ namespace AMAZON.Stats
             }
         }
 
-        public int CalculateLevel()
+        private int CalculateLevel()
         {
             if (_experience == null) return _startingLevel;
 
