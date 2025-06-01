@@ -1347,6 +1347,7 @@ MonoBehaviour:
   _timeBetweenAttacks: 1
   _rightHandSocket: {fileID: 3480718407461833335}
   _leftHandSocket: {fileID: 2658508564136126469}
+  _baseStats: {fileID: 7963605236127440346}
   _defaultWeapon: {fileID: 11400000, guid: 21a00684b9f008b4a9dcf5337542db32, type: 2}
 --- !u!114 &4490278798185038503
 MonoBehaviour:
@@ -1380,10 +1381,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5983475435390184308}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1414,6 +1415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingLevel: 1
   _charecterClass: 0
+  _experience: {fileID: 0}
+  _levelUpPartilce: {fileID: 0}
   _progression: {fileID: 11400000, guid: 2927a9a325feadd459fe95b4e3ae3513, type: 2}
 --- !u!114 &2944306751856940847
 MonoBehaviour:
@@ -1431,7 +1434,6 @@ MonoBehaviour:
   _actionScheduler: {fileID: 4490278798185038503}
   _model: {fileID: 4931633995107201451}
   _baseStats: {fileID: 7963605236127440346}
-  _health: 100
 --- !u!1 &6174930934079904636
 GameObject:
   m_ObjectHideFlags: 0

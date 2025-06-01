@@ -5,6 +5,7 @@ using AMAZON.Attributes;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UniRx;
+using AMAZON.Stats;
 
 namespace AMAZON.Combat
 {
@@ -16,6 +17,7 @@ namespace AMAZON.Combat
         [SerializeField][Range(0.0f, 10.0f)] private float _timeBetweenAttacks;
         [SerializeField] private Transform _rightHandSocket = null;
         [SerializeField] private Transform _leftHandSocket = null;
+        [SerializeField] private BaseStats _baseStats = null;
 
         [SerializeField] private WeaponSO _defaultWeapon = null;
 
@@ -117,11 +119,12 @@ namespace AMAZON.Combat
             
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target.Value, gameObject);
+                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target.Value, gameObject, _baseStats.GetStat(EStat.Damage));
             }
             else
             {
-                Target.Value.TakeDamege(gameObject, Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
+                Target.Value.TakeDamege(gameObject, _baseStats.GetStat(EStat.Damage));
+                //Target.Value.TakeDamege(gameObject, Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y));
             }
         }
     }

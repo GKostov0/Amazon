@@ -54,10 +54,10 @@ namespace AMAZON.Combat
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
         }
 
-        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator)
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage)
         {
             Projectile projectile = Instantiate(_projectile, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
-            projectile.SetTarget(target, instigator, Random.Range(_weaponDamage.x, _weaponDamage.y));
+            projectile.SetTarget(target, instigator, calculatedDamage);
         }
 
         private void DestroyOldWeapon(Transform rHand, Transform lHand)

@@ -1,5 +1,4 @@
 using AMAZON.Combat;
-using System;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -28,7 +27,7 @@ namespace AMAZON.UI
 
                     newValue.CurrentHealth.Subscribe(NewHealth => 
                     {
-                        _enemyHealthText.SetText(string.Format("Target: {0:0.0}%", newValue.GetHealthPercent()));
+                        _enemyHealthText.SetText(string.Format("Target: {0:0.0}% {1:0}/{2:0}", newValue.GetHealthPercent(), newValue.GetMaxHealth(), newValue.CurrentHealth.Value));
                     })
                     .AddTo(_disposible);
                 }
@@ -37,7 +36,6 @@ namespace AMAZON.UI
                     _disposible.Clear();
                     _enemyHealthText.SetText("[-]");
                 }
-
             })
             .AddTo(this);
         }

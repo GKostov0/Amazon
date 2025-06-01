@@ -2,7 +2,6 @@ using AMAZON.Core;
 using AMAZON.Saving;
 using AMAZON.Stats;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel;
 using UniRx;
 using UnityEngine;
 
@@ -24,6 +23,7 @@ namespace AMAZON.Attributes
         public Transform GetModel() => _model;
         public JToken CaptureAsJToken() => JToken.FromObject(CurrentHealth.Value);
         public float GetHealthPercent() => 100.0f * (CurrentHealth.Value / _baseStats.GetStat(EStat.Health));
+        public float GetMaxHealth() => _baseStats.GetStat(EStat.Health);
 
         private void Start()
         {
@@ -48,6 +48,8 @@ namespace AMAZON.Attributes
 
         public void TakeDamege(GameObject instigator, float amount)
         {
+            Debug.Log($"{gameObject.name} took {amount} damage!");
+
             CurrentHealth.Value = Mathf.Max(CurrentHealth.Value - amount, 0.0f);
 
             if (CurrentHealth.Value <= 0)

@@ -5,6 +5,7 @@ namespace AMAZON.Stats
         None = 0,
         Health = 1,
         ExperienceReward = 2,
-        ExperienceToLevelUp = 3
+        ExperienceToLevelUp = 3,
+        Damage = 4
     }
 }

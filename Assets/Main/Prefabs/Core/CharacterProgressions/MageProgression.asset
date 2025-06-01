@@ -24,3 +24,10 @@ MonoBehaviour:
     - 5
     - 10
     - 20
+  - stat: 4
+    levels:
+    - 2
+    - 4
+    - 9
+    - 14
+    - 20
