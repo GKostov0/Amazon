@@ -61,11 +61,19 @@ namespace AMAZON.Combat
             weapon.Spawn(_rightHandSocket, _leftHandSocket, _animator);
         }
 
-        public IEnumerable<float> GetAdditiveModifier(EStat stat)
+        public IEnumerable<float> GetAdditiveModifiers(EStat stat)
         {
             if (stat.Equals(EStat.Damage))
             {
                 yield return Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y);
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(EStat stat)
+        {
+            if (stat.Equals(EStat.Damage))
+            {
+                yield return _currentWeapon.GetPercentBonusDamage();
             }
         }
 

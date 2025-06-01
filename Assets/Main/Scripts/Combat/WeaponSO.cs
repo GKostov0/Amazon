@@ -25,12 +25,18 @@ namespace AMAZON.Combat
         [MinMaxSlider(0, 50, true)]
         [SerializeField] private Vector2 _weaponDamage;
 
+        [BoxGroup("WeaponStats")]
+        [LabelText("Bonus Damage %"), SuffixLabel("%")]
+        [Range(0, 200)]
+        [SerializeField] private float _percentBonusDamage = 0.0f;
+
         [SerializeField] private bool _isRightHand = true;
 
         private const string weaponName = "Weapon";
 
         public Vector2 GetWeaponDamage() => _weaponDamage;
         public float GetWeaponRange() => _weaponRange;
+        public float GetPercentBonusDamage() => _percentBonusDamage;
 
         private Transform GetHandTransform(Transform rHand, Transform lHand) => _isRightHand ? rHand : lHand;
 

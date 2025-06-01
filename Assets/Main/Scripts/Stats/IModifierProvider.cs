@@ -4,6 +4,7 @@ namespace AMAZON.Stats
 {
     public interface IModifierProvider
     {
-        IEnumerable<float> GetAdditiveModifier(EStat stat);
+        IEnumerable<float> GetAdditiveModifiers(EStat stat);
+        IEnumerable<float> GetPercentageModifiers(EStat stat);
     }
 }
