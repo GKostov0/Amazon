@@ -1,4 +1,5 @@
 using AMAZON.Attributes;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace AMAZON.Combat
@@ -11,6 +12,7 @@ namespace AMAZON.Combat
         [SerializeField] private Collider _collider;
         [SerializeField] private bool _isHoaming;
         [SerializeField] private bool _destroyTrailOnImpact;
+        [SuffixLabel("s", Overlay = true)][SerializeField] private float _destroyAfter;
 
         private Health _target = null;
         private float _damage = 0;
@@ -83,7 +85,7 @@ namespace AMAZON.Combat
                     other.enabled = false;
             }
 
-            Destroy(gameObject, 5.0f);
+            Destroy(gameObject, _destroyAfter);
         }
     }
 }

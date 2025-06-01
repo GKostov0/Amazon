@@ -2,6 +2,7 @@ using AMAZON.Core;
 using AMAZON.Saving;
 using AMAZON.Stats;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel;
 using UniRx;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace AMAZON.Attributes
         [SerializeField] private Transform _model;
         [SerializeField] private BaseStats _baseStats;
 
-        public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>();
+        public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>(-1.0f);
 
         private bool _isDead;
 
@@ -26,7 +27,16 @@ namespace AMAZON.Attributes
 
         private void Start()
         {
-            CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
+            if (CurrentHealth.Value < 0)
+            {
+                CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
+            }
+
+            _baseStats.CurrentLevel.Subscribe(newValue => 
+            {
+                CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
+            })
+            .AddTo(this);
         }
 
         public void RestoreFromJToken(JToken state)

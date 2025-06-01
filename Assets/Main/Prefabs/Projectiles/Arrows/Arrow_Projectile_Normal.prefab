@@ -52,6 +52,7 @@ MonoBehaviour:
   _collider: {fileID: 116470921614513253}
   _isHoaming: 0
   _destroyTrailOnImpact: 0
+  _destroyAfter: 5
 --- !u!65 &116470921614513253
 BoxCollider:
   m_ObjectHideFlags: 0

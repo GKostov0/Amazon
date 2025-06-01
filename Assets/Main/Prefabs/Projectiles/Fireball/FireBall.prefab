@@ -129,6 +129,7 @@ MonoBehaviour:
   _collider: {fileID: 6782680549761758368}
   _isHoaming: 1
   _destroyTrailOnImpact: 1
+  _destroyAfter: 0.5
 --- !u!1001 &299205604407506860
 PrefabInstance:
   m_ObjectHideFlags: 0

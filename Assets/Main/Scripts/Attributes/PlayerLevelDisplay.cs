@@ -19,7 +19,7 @@ namespace AMAZON.UI
 
             _playerExperience.ExperiencePoints.Subscribe(_ =>
             {
-                _levelText.SetText($"Level: {_baseStats.GetLevel()}");
+                _levelText.SetText($"Level: {_baseStats.CalculateLevel()}");
             })
             .AddTo(this);
         }

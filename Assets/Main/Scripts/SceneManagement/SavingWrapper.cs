@@ -16,8 +16,14 @@ namespace AMAZON.SceneManagement
 
         public void Save() => _savingSystem.Save(_defaultSaveFile);
         public void Load() => _savingSystem.Load(_defaultSaveFile);
+        public void Delete() => _savingSystem.Delete(_defaultSaveFile);
 
-        private IEnumerator Start()
+        private void Awake()
+        {
+            StartCoroutine(LoadLastScene());
+        }
+
+        private IEnumerator LoadLastScene()
         {
             _fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<Fader>();
             _fader.FadeInImmediate();
@@ -32,6 +38,7 @@ namespace AMAZON.SceneManagement
         {
             if (Input.GetKeyUp(KeyCode.F9)) { Load(); }
             if (Input.GetKeyUp(KeyCode.F5)) { Save(); }
+            if (Input.GetKeyUp(KeyCode.Delete)) { Delete(); }
         }
     }
 }
