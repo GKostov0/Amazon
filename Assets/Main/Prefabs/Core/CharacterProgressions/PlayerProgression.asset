@@ -27,10 +27,12 @@ MonoBehaviour:
   - stat: 3
     levels:
     - 50
+    - 100
+    - 150
     - 200
-    - 380
-    - 590
-    - 1100
+    - 250
+    - 300
+    - 350
   - stat: 4
     levels:
     - 2

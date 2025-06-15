@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace AMAZON.Saving
 {
     public interface ISaveable
     {
-        JToken CaptureAsJToken();
-        void RestoreFromJToken(JToken state);
+        public JToken CaptureAsJToken();
+        public void RestoreFromJToken(JToken state);
     }
 
     public static class JsonStatics

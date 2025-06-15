@@ -33,13 +33,15 @@ namespace AMAZON.Control
         private float _currentDwellTime;
         private int _currentWaypointIndex = 0;
 
-        private void Start() 
+        private void Awake()
         {
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
-            _startingPosition = transform.position;
-
             _currentDwellTime = Random.Range(_dwellingTime.x, _dwellingTime.y);
+        }
+
+        private void Start()
+        {
+            _startingPosition = transform.position;
         }
 
         [SerializeField][Range(1.0f, 50.0f)] private float _chaseDistance = 5.0f;

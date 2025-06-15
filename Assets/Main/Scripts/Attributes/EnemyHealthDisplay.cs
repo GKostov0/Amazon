@@ -1,4 +1,5 @@
 using AMAZON.Combat;
+using System.Collections;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -13,10 +14,15 @@ namespace AMAZON.UI
 
         private CompositeDisposable _disposible;
 
-        private void Start()
+        private void Awake()
         {
             _playerFighter = GameObject.FindWithTag("Player").GetComponent<Fighter>();
             _disposible = new CompositeDisposable();
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(2.0f);
 
             _playerFighter.Target.Subscribe(newValue => 
             {

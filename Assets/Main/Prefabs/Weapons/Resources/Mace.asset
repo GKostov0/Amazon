@@ -17,5 +17,5 @@ MonoBehaviour:
   _projectile: {fileID: 0}
   _weaponRange: 1
   _weaponDamage: {x: 5, y: 5}
-  _percentBonusDamage: 10
+  _percentBonusDamage: 200
   _isRightHand: 1

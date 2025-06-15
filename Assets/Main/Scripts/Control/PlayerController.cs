@@ -2,6 +2,10 @@ using UnityEngine;
 using AMAZON.Movement;
 using AMAZON.Combat;
 using AMAZON.Attributes;
+using AMAZON.UI;
+using System;
+using Sirenix.Utilities;
+using System.Linq;
 
 namespace AMAZON.Control
 {
@@ -11,6 +15,7 @@ namespace AMAZON.Control
         [SerializeField] private Fighter _fighter;
         [SerializeField] private Health _health;
         [SerializeField] private Camera _mainCamera;
+        [SerializeField] private CursorsSO _cursors;
 
         private void Update()
         {
@@ -18,6 +23,8 @@ namespace AMAZON.Control
 
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
+
+            _cursors.SetCursor(ECursorType.None);
         }
 
         private bool InteractWithMovement()
@@ -28,7 +35,7 @@ namespace AMAZON.Control
                 {
                     _playerMover.StartMoveAction(hit.point, 1.0f);
                 }
-
+                _cursors.SetCursor(ECursorType.Movement);
                 return true;
             }
 
@@ -48,6 +55,7 @@ namespace AMAZON.Control
                 {
                     _fighter.Attack(ct.gameObject);
                 }
+                _cursors.SetCursor(ECursorType.Combat);
                 return true;
             }
 

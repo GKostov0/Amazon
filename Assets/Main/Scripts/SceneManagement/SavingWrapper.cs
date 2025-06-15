@@ -25,13 +25,12 @@ namespace AMAZON.SceneManagement
 
         private IEnumerator LoadLastScene()
         {
+            yield return _savingSystem.LoadLastScene(_defaultSaveFile);
+
             _fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<Fader>();
             _fader.FadeInImmediate();
 
-            yield return _savingSystem.LoadLastScene(_defaultSaveFile);
-
             _fader.FadeOut(_fadeOutTime);
-            yield return new WaitForSeconds(_fadeOutTime);
         }
 
         private void Update()

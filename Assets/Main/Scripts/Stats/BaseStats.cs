@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 using UnityEngine;
 using UniRx;
 using System;
+using System.Collections;
 
 namespace AMAZON.Stats
 {
@@ -17,17 +18,25 @@ namespace AMAZON.Stats
         [AssetsOnly]
         [SerializeField] private ProgressionSO _progression = null;
 
-        public ReactiveProperty<int> CurrentLevel { get; private set; } = new ReactiveProperty<int>();
+        public ReactiveProperty<int> CurrentLevel { get; private set; } = new ReactiveProperty<int>(1);
 
         private float GetBaseStat(EStat stat) => _progression.GetStat(stat, _charecterClass, CurrentLevel.Value);
         public float GetStat(EStat stat) => (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat) / 100.0f);
 
-        private void Awake()
+        private IEnumerator Start()
         {
-            CurrentLevel.Value = CalculateLevel();
-
             if (_experience)
             {
+                if (PlayerPrefs.GetInt("save", 0) == 1)
+                {
+                    while (!_experience.OnRestoreComplete.Value)
+                    {
+                        yield return null;
+                    }
+                }
+
+                CurrentLevel.Value = CalculateLevel();
+
                 _experience.ExperiencePoints.Subscribe(_ =>
                 {
                     UpdateLevel();

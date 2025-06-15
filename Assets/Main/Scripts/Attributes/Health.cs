@@ -2,6 +2,7 @@ using AMAZON.Core;
 using AMAZON.Saving;
 using AMAZON.Stats;
 using Newtonsoft.Json.Linq;
+using System.Collections;
 using UniRx;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace AMAZON.Attributes
 
         public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>(-1.0f);
 
+        public ReactiveProperty<bool> OnRestoreComplete = new ReactiveProperty<bool>(false);
+
         private bool _isDead;
 
         public bool IsDead() => _isDead;
@@ -25,8 +28,16 @@ namespace AMAZON.Attributes
         public float GetHealthPercent() => 100.0f * (CurrentHealth.Value / _baseStats.GetStat(EStat.Health));
         public float GetMaxHealth() => _baseStats.GetStat(EStat.Health);
 
-        private void Start()
+        private IEnumerator Start()
         {
+            if (PlayerPrefs.GetInt("save", 0) == 1)
+            {
+                while (!OnRestoreComplete.Value)
+                {
+                    yield return null;
+                }
+            }
+
             if (CurrentHealth.Value < 0)
             {
                 CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
@@ -42,8 +53,7 @@ namespace AMAZON.Attributes
         public void RestoreFromJToken(JToken state)
         {
             CurrentHealth.Value = state.ToObject<float>();
-
-            if (CurrentHealth.Value <= 0) Die();
+            OnRestoreComplete.Value = true;
         }
 
         public void TakeDamege(GameObject instigator, float amount)

@@ -19835,6 +19835,7 @@ MonoBehaviour:
   _fighter: {fileID: 7295219608189664747}
   _health: {fileID: 2732909187521092613}
   _mainCamera: {fileID: 0}
+  _cursors: {fileID: 11400000, guid: 9abeddc0490c4a3429a1632100527a72, type: 2}
 --- !u!65 &5487015914950857172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19868,6 +19869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4325eabee4858b34e98bd785d2b16edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRestoreComplete:
+    value: 0
 --- !u!114 &7184668356555708144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7963605236127440346, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}

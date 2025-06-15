@@ -25,7 +25,16 @@ namespace AMAZON.Saving
             {
                 buildIndex = (int)stateDict["lastSceneBuildIndex"];
             }
-            yield return SceneManager.LoadSceneAsync(buildIndex);
+
+            if (buildIndex.Equals(SceneManager.GetActiveScene().buildIndex))
+            {
+                yield return null;
+            }
+            else
+            {
+                yield return SceneManager.LoadSceneAsync(buildIndex);
+            }
+
             RestoreFromToken(state);
         }
 
@@ -90,7 +99,7 @@ namespace AMAZON.Saving
                     state.WriteTo(writer);
                 }
             }
-
+            PlayerPrefs.SetInt("save", 1);
         }
 
         private void CaptureAsToken(JObject state)

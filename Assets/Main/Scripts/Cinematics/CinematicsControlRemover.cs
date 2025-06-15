@@ -7,13 +7,13 @@ public class CinematicsControlRemover : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _playableDirector;
 
-    private void Start()
+    private void OnEnable()
     {
         _playableDirector.played += OnDisableControls;
         _playableDirector.stopped += OnEnableControls;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _playableDirector.played -= OnDisableControls;
         _playableDirector.stopped -= OnEnableControls;
