@@ -10,7 +10,7 @@ namespace AMAZON.Saving
     public class SaveableEntity : MonoBehaviour
     {
         [SerializeField] private string _uniqueIdentifier = "";
-        private static Dictionary<string, SaveableEntity> _globalLookup = new Dictionary<string, SaveableEntity>();
+        private static readonly Dictionary<string, SaveableEntity> _globalLookup = new Dictionary<string, SaveableEntity>();
 
         public string GetUniqueIdentifier() => _uniqueIdentifier;
 

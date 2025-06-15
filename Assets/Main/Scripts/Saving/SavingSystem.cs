@@ -53,6 +53,7 @@ namespace AMAZON.Saving
         public void Delete(string saveFile)
         {
             File.Delete(GetPathFromSaveFile(saveFile));
+            PlayerPrefs.DeleteAll();
         }
 
         public IEnumerable<string> ListSaves()

@@ -1,9 +1,10 @@
+using AMAZON.Control;
 using System.Collections;
 using UnityEngine;
 
 namespace AMAZON.Combat
 {
-    public class WeaponPickup : MonoBehaviour
+    public class WeaponPickup : MonoBehaviour, IRaycastable
     {
         [SerializeField] private WeaponSO _weapon = null;
         [SerializeField][Range(1.0f, 20.0f)] private float _respawnTime = 5.0f;
@@ -13,9 +14,14 @@ namespace AMAZON.Combat
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<Fighter>().EquipWeapon(_weapon);
-                StartCoroutine(HideForSeconds(_respawnTime));
+                Pickup(other.GetComponent<Fighter>());
             }
+        }
+
+        private void Pickup(Fighter fighter)
+        {
+            fighter.EquipWeapon(_weapon);
+            StartCoroutine(HideForSeconds(_respawnTime));
         }
 
         private IEnumerator HideForSeconds(float seconds)
@@ -31,6 +37,15 @@ namespace AMAZON.Combat
 
             foreach (Transform child in transform)
                 child.gameObject.SetActive(visible);
+        }
+
+        public bool HandleRaycast(PlayerController callingController)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Pickup(callingController.GetComponent<Fighter>());
+            }
+            return true;
         }
     }
 }

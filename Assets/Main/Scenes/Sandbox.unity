@@ -13051,49 +13051,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 688932768400980968, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 688932768400980968, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 688932768400980968, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 688932768400980968, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 688932768400980968, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2073975617549922973, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
       propertyPath: m_Name
       value: HUD.Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 5285049557336531966, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5285049557336531966, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5285049557336531966, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5285049557336531966, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5285049557336531966, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7244953170919087432, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
       propertyPath: m_Pivot.x
@@ -13173,42 +13133,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7244953170919087432, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629688715469981218, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629688715469981218, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629688715469981218, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629688715469981218, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629688715469981218, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8981587293364762018, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8981587293364762018, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8981587293364762018, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8981587293364762018, guid: 2b2e22d3a911dec4b865f62977021217, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

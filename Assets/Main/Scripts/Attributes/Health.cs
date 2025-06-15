@@ -18,7 +18,7 @@ namespace AMAZON.Attributes
 
         public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>(-1.0f);
 
-        public ReactiveProperty<bool> OnRestoreComplete = new ReactiveProperty<bool>(false);
+        private ReactiveProperty<bool> _onRestoreComplete = new ReactiveProperty<bool>(false);
 
         private bool _isDead;
 
@@ -32,7 +32,7 @@ namespace AMAZON.Attributes
         {
             if (PlayerPrefs.GetInt("save", 0) == 1)
             {
-                while (!OnRestoreComplete.Value)
+                while (!_onRestoreComplete.Value)
                 {
                     yield return null;
                 }
@@ -53,7 +53,7 @@ namespace AMAZON.Attributes
         public void RestoreFromJToken(JToken state)
         {
             CurrentHealth.Value = state.ToObject<float>();
-            OnRestoreComplete.Value = true;
+            _onRestoreComplete.Value = true;
         }
 
         public void TakeDamege(GameObject instigator, float amount)

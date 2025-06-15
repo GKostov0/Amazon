@@ -3,9 +3,7 @@ using AMAZON.Movement;
 using AMAZON.Combat;
 using AMAZON.Attributes;
 using AMAZON.UI;
-using System;
-using Sirenix.Utilities;
-using System.Linq;
+using UnityEngine.EventSystems;
 
 namespace AMAZON.Control
 {
@@ -19,12 +17,46 @@ namespace AMAZON.Control
 
         private void Update()
         {
-            if (_health.IsDead()) return;
+            if (InteractWithUI())return;
 
-            if (InteractWithCombat()) return;
+            if (_health.IsDead())
+            {
+                _cursors.SetCursor(ECursorType.None);
+                return;
+            }
+
+            if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
 
             _cursors.SetCursor(ECursorType.None);
+        }
+
+        private bool InteractWithComponent()
+        {
+            foreach (RaycastHit hit in Physics.RaycastAll(GetMouseRay()))
+            {
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                
+                foreach(IRaycastable ray in raycastables)
+                {
+                    if (ray.HandleRaycast(this))
+                    {
+                        _cursors.SetCursor(ECursorType.Pickup);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                _cursors.SetCursor(ECursorType.UI);
+                return true;
+            }
+            return false;
         }
 
         private bool InteractWithMovement()
@@ -36,26 +68,6 @@ namespace AMAZON.Control
                     _playerMover.StartMoveAction(hit.point, 1.0f);
                 }
                 _cursors.SetCursor(ECursorType.Movement);
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool InteractWithCombat()
-        {
-            foreach (RaycastHit hit in Physics.RaycastAll(GetMouseRay()))
-            {
-                hit.transform.TryGetComponent<CombatTarget>(out var ct);
-                if (ct == null) continue;
-
-                if (!_fighter.CanAttack(ct.gameObject)) continue;
-
-                if (Input.GetMouseButton(0))
-                {
-                    _fighter.Attack(ct.gameObject);
-                }
-                _cursors.SetCursor(ECursorType.Combat);
                 return true;
             }
 

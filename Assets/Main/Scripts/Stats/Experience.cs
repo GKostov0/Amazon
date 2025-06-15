@@ -7,7 +7,7 @@ namespace AMAZON.Stats
 {
     public class Experience : MonoBehaviour, ISaveable
     {
-        public ReactiveProperty<bool> OnRestoreComplete = new ReactiveProperty<bool>(false);
+        [HideInInspector] public ReactiveProperty<bool> OnRestoreComplete = new ReactiveProperty<bool>(false);
 
         public ReactiveProperty<float> ExperiencePoints { get; private set; } = new ReactiveProperty<float>();
 
