@@ -1,4 +1,5 @@
 using AMAZON.Control;
+using AMAZON.UI;
 using System.Collections;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace AMAZON.Combat
         [SerializeField] private WeaponSO _weapon = null;
         [SerializeField][Range(1.0f, 20.0f)] private float _respawnTime = 5.0f;
         [SerializeField] private Collider _collider;
+
+        public ECursorType GetCursorType() => ECursorType.Pickup;
 
         private void OnTriggerEnter(Collider other)
         {

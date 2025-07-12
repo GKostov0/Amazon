@@ -1,7 +1,10 @@
+using AMAZON.UI;
+
 namespace AMAZON.Control
 {
     public interface IRaycastable
     {
-        bool HandleRaycast(PlayerController callingController);
+        public ECursorType GetCursorType();
+        public bool HandleRaycast(PlayerController callingController);
     }
 }
