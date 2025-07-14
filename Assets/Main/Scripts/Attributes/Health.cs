@@ -1,6 +1,7 @@
 using AMAZON.Core;
 using AMAZON.Saving;
 using AMAZON.Stats;
+using DamageNumbersPro;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using UniRx;
@@ -15,6 +16,7 @@ namespace AMAZON.Attributes
         [SerializeField] private ActionScheduler _actionScheduler;
         [SerializeField] private Transform _model;
         [SerializeField] private BaseStats _baseStats;
+        [SerializeField] private DamageNumber _damageNumber;
 
         public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>(-1.0f);
 
@@ -61,6 +63,8 @@ namespace AMAZON.Attributes
             Debug.Log($"{gameObject.name} took {amount} damage!");
 
             CurrentHealth.Value = Mathf.Max(CurrentHealth.Value - amount, 0.0f);
+
+            _damageNumber.Spawn(transform.position + Vector3.up * 2.0f, amount);
 
             if (CurrentHealth.Value <= 0)
             {
