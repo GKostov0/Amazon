@@ -1927,6 +1927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3172741305073984925, guid: 6cb622c9e0bd5a046a67e08f5a5eac7f, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 2944306751856940847}
     - target: {fileID: 5928470042564406814, guid: 6cb622c9e0bd5a046a67e08f5a5eac7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
