@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5928470042564406814}
   - component: {fileID: 3172741305073984925}
+  - component: {fileID: 4917023055188955231}
   m_Layer: 0
   m_Name: HealthUI
   m_TagString: Untagged
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthImage: {fileID: 452962402243552409}
   _health: {fileID: 0}
+  _healthCanvas: {fileID: 7451988455005530951}
+--- !u!114 &4917023055188955231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540189951237878741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bef2aab82f72f046a6239b169755c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5665492528659922608
 GameObject:
   m_ObjectHideFlags: 0

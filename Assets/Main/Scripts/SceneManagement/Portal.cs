@@ -45,12 +45,18 @@ namespace AMAZON.SceneManagement
 
             DontDestroyOnLoad(gameObject);
 
+            PlayerController playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            playerController.enabled = false;
+
             _fader.FadeIn(_fadeInOutTime.y);
             yield return new WaitForSeconds(_fadeInOutTime.y);
 
             _savingWrapper.Save();
 
             yield return SceneManager.LoadSceneAsync(_sceneToLoad);
+
+            PlayerController newPlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            newPlayerController.enabled = false;
 
             _savingWrapper.Load();
 
@@ -60,6 +66,8 @@ namespace AMAZON.SceneManagement
 
             _savingWrapper.Save();
             _fader.FadeOut(_fadeInOutTime.x);
+
+            newPlayerController.enabled = true;
             yield return new WaitForSeconds(_fadeInOutTime.x);
 
             Destroy(gameObject);
@@ -84,7 +92,6 @@ namespace AMAZON.SceneManagement
             playerNavMeshAgent.enabled = false;
 
             playerController.transform.position = otherPortal._spawnPoint.position;
-            // playerController.transform.rotation = otherPortal._spawnPoint.rotation;
 
             playerNavMeshAgent.enabled = true;
         }

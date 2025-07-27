@@ -1,4 +1,5 @@
 using AMAZON.Attributes;
+using AMAZON.Audio;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace AMAZON.Combat
         [SerializeField] private bool _isHoaming;
         [SerializeField] private bool _destroyTrailOnImpact;
         [SuffixLabel("s", Overlay = true)][SerializeField] private float _destroyAfter;
+        [SerializeField] private AudioRandomizer _audioRandomizerLaunch;
+        [SerializeField] private AudioRandomizer _audioRandomizerHit;
 
         private Health _target = null;
         private float _damage = 0;
@@ -26,6 +29,7 @@ namespace AMAZON.Combat
 
         private void Start()
         {
+            _audioRandomizerLaunch.PlaySound();
             _targetOffset = GetRandomOffset();
             _targetPosition = Vector3.up * _targetOffset;
 
@@ -76,6 +80,7 @@ namespace AMAZON.Combat
 
                 _target.TakeDamege(_instigator, _damage);
                 transform.parent = health.GetModel();
+                _audioRandomizerHit.PlaySound();
 
                 _speed = 0.0f;
                 _target = null;

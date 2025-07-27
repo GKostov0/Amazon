@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300020, guid: 409520c9226982345a49c9803624f208, type: 3}
+    - target: {fileID: 2277180063408521149, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
+      propertyPath: '_audioClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c2e02a606d9cc4468883fb6c7880b1b9, type: 3}
     - target: {fileID: 2482266097440950959, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
       propertyPath: m_Enabled
       value: 1

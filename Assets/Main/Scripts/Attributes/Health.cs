@@ -1,3 +1,4 @@
+using AMAZON.Audio;
 using AMAZON.Core;
 using AMAZON.Saving;
 using AMAZON.Stats;
@@ -17,8 +18,11 @@ namespace AMAZON.Attributes
         [SerializeField] private Transform _model;
         [SerializeField] private BaseStats _baseStats;
         [SerializeField] private DamageNumber _damageNumber;
+        [SerializeField] private AudioRandomizer _takeDamageAudio;
+        [SerializeField] private AudioRandomizer _dieAudio;
 
-        public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>(-1.0f);
+        public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>();
+        public ReactiveProperty<float> NormalizedHealth { get; private set; }
 
         private ReactiveProperty<bool> _onRestoreComplete = new ReactiveProperty<bool>(false);
 
@@ -33,6 +37,11 @@ namespace AMAZON.Attributes
         public float GetHealthPercent() => 100.0f * GetHealthFraction();
         public float GetMaxHealth() => _baseStats.GetStat(EStat.Health);
 
+        private void Awake()
+        {
+            NormalizedHealth = new ReactiveProperty<float>(GetHealthFraction());
+        }
+
         private IEnumerator Start()
         {
             if (PlayerPrefs.GetInt("save", 0) == 1)
@@ -46,11 +55,13 @@ namespace AMAZON.Attributes
             if (CurrentHealth.Value < 0)
             {
                 CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
+                NormalizedHealth.Value = GetHealthFraction();
             }
 
-            _baseStats.CurrentLevel.Subscribe(newValue => 
+            _baseStats.CurrentLevel.Subscribe(newValue =>
             {
                 CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
+                NormalizedHealth.Value = GetHealthFraction();
             })
             .AddTo(this);
         }
@@ -58,14 +69,17 @@ namespace AMAZON.Attributes
         public void RestoreFromJToken(JToken state)
         {
             CurrentHealth.Value = state.ToObject<float>();
+            NormalizedHealth.Value = GetHealthFraction();
             _onRestoreComplete.Value = true;
         }
 
         public void TakeDamege(GameObject instigator, float amount)
         {
             Debug.Log($"{gameObject.name} took {amount} damage!");
+            _takeDamageAudio.PlaySound();
 
             CurrentHealth.Value = Mathf.Max(CurrentHealth.Value - amount, 0.0f);
+            NormalizedHealth.Value = GetHealthFraction();
 
             _damageNumber.Spawn(transform.position + Vector3.up * 2.0f, amount);
 
@@ -91,6 +105,7 @@ namespace AMAZON.Attributes
             if (_isDead) return;
 
             _isDead = true;
+            _dieAudio.PlaySound();
             _animator.SetTrigger("die");
             _actionScheduler.CancelCurrentAction();
         }

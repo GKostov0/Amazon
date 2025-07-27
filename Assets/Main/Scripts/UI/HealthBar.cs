@@ -7,12 +7,20 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image _healthImage;
     [SerializeField] private Health _health;
+    [SerializeField] private GameObject _healthCanvas;
 
     private void Start()
     {
-        _health.CurrentHealth.Subscribe(_ => 
+        _health.NormalizedHealth.Subscribe(newValue =>
         {
-            _healthImage.fillAmount = _health.GetHealthFraction();
+            if (Mathf.Approximately(newValue, 0) || Mathf.Approximately(newValue, 1))
+            {
+                _healthCanvas.SetActive(false);
+                return;
+            }
+
+            _healthCanvas.SetActive(true);
+            _healthImage.fillAmount = newValue;
         })
         .AddTo(this);
     }
