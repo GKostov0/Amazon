@@ -75,7 +75,7 @@ namespace AMAZON.Attributes
 
         public void TakeDamege(GameObject instigator, float amount)
         {
-            Debug.Log($"{gameObject.name} took {amount} damage!");
+            // Debug.Log($"{gameObject.name} took {amount} damage!");
             _takeDamageAudio.PlaySound();
 
             CurrentHealth.Value = Mathf.Max(CurrentHealth.Value - amount, 0.0f);
@@ -88,6 +88,11 @@ namespace AMAZON.Attributes
                 Die();
                 AwardExperience(instigator);
             }
+        }
+
+        public void Heal(float pointsToRestore)
+        {
+            CurrentHealth.Value = Mathf.Min(CurrentHealth.Value + pointsToRestore, GetMaxHealth());
         }
 
         private void AwardExperience(GameObject instigator)

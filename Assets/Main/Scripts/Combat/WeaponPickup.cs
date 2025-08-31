@@ -1,3 +1,4 @@
+using AMAZON.Attributes;
 using AMAZON.Control;
 using AMAZON.UI;
 using System.Collections;
@@ -9,6 +10,7 @@ namespace AMAZON.Combat
     {
         [SerializeField] private WeaponSO _weapon = null;
         [SerializeField][Range(1.0f, 20.0f)] private float _respawnTime = 5.0f;
+        [SerializeField][Range(1.0f, 1000.0f)] private float _healthToRestore = 0.0f;
         [SerializeField] private Collider _collider;
 
         public ECursorType GetCursorType() => ECursorType.Pickup;
@@ -17,13 +19,22 @@ namespace AMAZON.Combat
         {
             if (other.CompareTag("Player"))
             {
-                Pickup(other.GetComponent<Fighter>());
+                Pickup(other.gameObject);
             }
         }
 
-        private void Pickup(Fighter fighter)
+        private void Pickup(GameObject subject)
         {
-            fighter.EquipWeapon(_weapon);
+            if (_weapon != null)
+            {
+                subject.GetComponent<Fighter>().EquipWeapon(_weapon);
+            }
+
+            if (_healthToRestore > 0.0f)
+            {
+                subject.GetComponent<Health>().Heal(_healthToRestore);
+            }
+
             StartCoroutine(HideForSeconds(_respawnTime));
         }
 
@@ -46,7 +57,7 @@ namespace AMAZON.Combat
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Pickup(callingController.GetComponent<Fighter>());
+                Pickup(callingController.gameObject);
             }
             return true;
         }

@@ -8,8 +8,11 @@ namespace AMAZON.Combat
 
         public void OnHit()
         {
-            _onHitAudio.Play();
-            print($"Weapon hit {gameObject.name}");
+            if (_onHitAudio)
+            {
+                _onHitAudio.Play();
+                print($"Weapon hit {gameObject.name}");
+            }
         }
     }
 }
