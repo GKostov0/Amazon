@@ -52,7 +52,7 @@ namespace AMAZON.Attributes
                 }
             }
 
-            if (CurrentHealth.Value < 0)
+            if (CurrentHealth.Value <= 0)
             {
                 CurrentHealth.Value = _baseStats.GetStat(EStat.Health);
                 NormalizedHealth.Value = GetHealthFraction();

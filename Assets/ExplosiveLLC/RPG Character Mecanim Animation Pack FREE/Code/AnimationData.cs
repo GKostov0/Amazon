@@ -15,7 +15,7 @@ namespace RPGCharacterAnims
 		/// </summary>
 		/// <param name="leftWeapon">Left-hand weapon.</param>
 		/// <param name="rightWeapon">Right-hand weapon.</param>
-		public static AnimatorWeapon ConvertToAnimatorWeapon(Weapon leftWeapon, Weapon rightWeapon)
+		public static AnimatorWeapon ConvertToAnimatorWeapon(EWeapon leftWeapon, EWeapon rightWeapon)
 		{
 			// 2-handed weapon.
 			if (rightWeapon.Is2HandedWeapon()) { return ( AnimatorWeapon )rightWeapon; }
@@ -34,14 +34,14 @@ namespace RPGCharacterAnims
 		/// <param name="weapon">Weapon that's attacking.</param>
 		/// <param name="attackNumber">Attack animation number.</param>
 		/// <returns>Duration in seconds of attack animation.</returns>
-		public static float AttackDuration(Side attackSide, Weapon weapon, int attackNumber)
+		public static float AttackDuration(Side attackSide, EWeapon weapon, int attackNumber)
 		{
 			var duration = 1f;
 
 			switch (attackSide) {
 				case Side.None:						// Unspecified (2-Handed Weapons)
 					switch (weapon) {
-						case Weapon.TwoHandSword:
+						case EWeapon.TwoHandSword:
 							duration = 1.1f;
 							break;
 						default:
@@ -52,7 +52,7 @@ namespace RPGCharacterAnims
 
 				case Side.Left:						// Left Side
 					switch (weapon) {
-						case Weapon.Unarmed:
+						case EWeapon.Unarmed:
 							duration = 0.75f;
 							break;					// Unarmed  (1-3)
 						default:
@@ -62,7 +62,7 @@ namespace RPGCharacterAnims
 					break;
 				case Side.Right:					// Right Side
 					switch (weapon) {
-						case Weapon.Unarmed:
+						case EWeapon.Unarmed:
 							duration = 0.75f;
 							break;					// Unarmed  (4-6)
 						default:
@@ -81,7 +81,7 @@ namespace RPGCharacterAnims
 		/// <param name="attackSide">Side of the attack: 0- None, 1- Left, 2- Right, 3- Dual.</param>
 		/// <param name="weaponNumber">Weapon being sheathed.</param>
 		/// <returns>Duration in seconds of sheath animation.</returns>
-		public static float SheathDuration(Side attackSide, Weapon weapon)
+		public static float SheathDuration(Side attackSide, EWeapon weapon)
 		{
 			var duration = 1f;
 
@@ -98,12 +98,12 @@ namespace RPGCharacterAnims
 		/// <param name="sideType">Side of the attack: 0- None, 1- Left, 2- Right, 3- Dual.</param>
 		/// <param name="weapon">Weapon attacking.</param>
 		/// <returns>Attack animation number.</returns>
-		public static int RandomAttackNumber(Side sideType, Weapon weapon)
+		public static int RandomAttackNumber(Side sideType, EWeapon weapon)
 		{
 			switch (sideType) {
 				case Side.None:
 					switch (weapon) {
-						case Weapon.TwoHandSword:
+						case EWeapon.TwoHandSword:
 							return ( int )AnimationVariations.TwoHandedSwordAttacks.TakeRandom();
 						default:
 							Debug.LogError($"RPG Character: no weapon number {weapon} for Side 0");
@@ -113,7 +113,7 @@ namespace RPGCharacterAnims
 
 				case Side.Left:
 					switch (weapon) {
-						case Weapon.Unarmed:
+						case EWeapon.Unarmed:
 							return ( int )AnimationVariations.UnarmedLeftAttacks.TakeRandom();
 						default:
 							Debug.LogError($"RPG Character: no weapon number {weapon} for Side 1 (Left)");
@@ -122,7 +122,7 @@ namespace RPGCharacterAnims
 					break;
 				case Side.Right:
 					switch (weapon) {
-						case Weapon.Unarmed:
+						case EWeapon.Unarmed:
 							return ( int )AnimationVariations.UnarmedRightAttacks.TakeRandom();
 						default:
 							Debug.LogError($"RPG Character: no weapon number {weapon} for Side 2 (Right)");

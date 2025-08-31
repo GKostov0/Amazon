@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FireStaff
   m_EditorClassIdentifier: 
   _animatorOverride: {fileID: 22100000, guid: 1004ae0cf3da9f747a2766af47562e3f, type: 2}
-  _weaponPrefab: {fileID: 3645958750487709651, guid: e7937f21028a0a644ad2183680115390, type: 3}
+  _weaponPrefab: {fileID: -6054959913827717090, guid: e7937f21028a0a644ad2183680115390, type: 3}
   _projectile: {fileID: 6540078043648450176, guid: 14e1105c1228d4b48b56733e68bfd1d9, type: 3}
   _weaponRange: 10
   _weaponDamage: {x: 9, y: 12}
+  _percentBonusDamage: 0
   _isRightHand: 1

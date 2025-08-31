@@ -22,19 +22,28 @@ namespace AMAZON.Combat
 
         [SerializeField] private WeaponSO _defaultWeapon = null;
 
-        private WeaponSO _currentWeapon;
+        private WeaponSO _currentWeaponSO;
+        private Weapon _currentWeapon;
 
         public ReactiveProperty<Health> Target { get; private set; } = new ReactiveProperty<Health>();
 
         private float _timeSinceLastAttack = Mathf.Infinity;
 
-        public JToken CaptureAsJToken() => _currentWeapon.name;
+        public JToken CaptureAsJToken() => _currentWeaponSO.name;
         public void RestoreFromJToken(JToken state) => EquipWeapon(Resources.Load<WeaponSO>((string)state));
+
+
+        private Weapon SetupDefaultWeapon() => AttachWeapon(_defaultWeapon);
+
+
+        private void Awake()
+        {
+            _currentWeaponSO = _defaultWeapon;
+        }
 
         private void Start()
         {
-            if (_currentWeapon == null)
-                EquipWeapon(_defaultWeapon);
+            EquipWeapon(_currentWeaponSO);
         }
 
         private void Update()
@@ -57,15 +66,20 @@ namespace AMAZON.Combat
 
         public void EquipWeapon(WeaponSO weapon)
         {
-            _currentWeapon = weapon;
-            weapon.Spawn(_rightHandSocket, _leftHandSocket, _animator);
+            _currentWeaponSO = weapon;
+            _currentWeapon = AttachWeapon(weapon);
+        }
+        
+        private Weapon AttachWeapon(WeaponSO weapon)
+        {
+            return weapon.Spawn(_rightHandSocket, _leftHandSocket, _animator);
         }
 
         public IEnumerable<float> GetAdditiveModifiers(EStat stat)
         {
             if (stat.Equals(EStat.Damage))
             {
-                yield return Random.Range(_currentWeapon.GetWeaponDamage().x, _currentWeapon.GetWeaponDamage().y);
+                yield return Random.Range(_currentWeaponSO.GetWeaponDamage().x, _currentWeaponSO.GetWeaponDamage().y);
             }
         }
 
@@ -73,7 +87,7 @@ namespace AMAZON.Combat
         {
             if (stat.Equals(EStat.Damage))
             {
-                yield return _currentWeapon.GetPercentBonusDamage();
+                yield return _currentWeaponSO.GetPercentBonusDamage();
             }
         }
 
@@ -98,7 +112,7 @@ namespace AMAZON.Combat
 
         private bool IsInRange()
         {
-            return Vector3.Distance(transform.position, Target.Value.transform.position) < _currentWeapon.GetWeaponRange();
+            return Vector3.Distance(transform.position, Target.Value.transform.position) < _currentWeaponSO.GetWeaponRange();
         }
 
         public void Cancel()
@@ -132,11 +146,16 @@ namespace AMAZON.Combat
         // Animation Event
         private void Hit()
         {
-            if (Target.Value == null) return;
-            
-            if (_currentWeapon.HasProjectile())
+            if (Target.Value == null) { return; }
+
+            if (_currentWeapon != null)
             {
-                _currentWeapon.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target.Value, gameObject, _baseStats.GetStat(EStat.Damage));
+                _currentWeapon.OnHit();
+            }
+            
+            if (_currentWeaponSO.HasProjectile())
+            {
+                _currentWeaponSO.LaunchProjectile(_rightHandSocket, _leftHandSocket, Target.Value, gameObject, _baseStats.GetStat(EStat.Damage));
             }
             else
             {

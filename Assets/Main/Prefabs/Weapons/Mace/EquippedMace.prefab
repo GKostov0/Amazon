@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3058727386478126112}
+  - component: {fileID: -4941544257829892306}
   m_Layer: 0
   m_Name: EquippedMace
   m_TagString: Untagged
@@ -118,3 +119,15 @@ Transform:
   - {fileID: 1003281574969905867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -104.796, y: -0.43200684, z: 4.3190002}
+--- !u!114 &-4941544257829892306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496016767697721106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c36244480244048b6d452ffb0e674b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

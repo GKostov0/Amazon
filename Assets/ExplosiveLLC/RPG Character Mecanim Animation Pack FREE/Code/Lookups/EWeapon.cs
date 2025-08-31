@@ -1,6 +1,6 @@
 namespace RPGCharacterAnims.Lookups
 {
-    public enum Weapon
+    public enum EWeapon
 	{
         Unarmed = 0,
         TwoHandSword = 1,

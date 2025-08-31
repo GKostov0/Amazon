@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Bow_Poison
   m_EditorClassIdentifier: 
   _animatorOverride: {fileID: 22100000, guid: 39138445b97d7594b8e7f16ccba4a69e, type: 2}
-  _weaponPrefab: {fileID: 8494126669643651710, guid: 10b2422ce96f69e43abfdff31382e35b, type: 3}
+  _weaponPrefab: {fileID: 8347700503411826915, guid: 10b2422ce96f69e43abfdff31382e35b, type: 3}
   _projectile: {fileID: 877340357026680181, guid: de3de16b0cbbbe249b3099a26b600f56, type: 3}
   _weaponRange: 8
   _weaponDamage: {x: 3, y: 12}
+  _percentBonusDamage: 0
   _isRightHand: 0

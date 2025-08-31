@@ -11,7 +11,7 @@ namespace AMAZON.Combat
         [SerializeField] private AnimatorOverrideController _animatorOverride = null;
 
         [AssetsOnly]
-        [SerializeField] private GameObject _weaponPrefab = null;
+        [SerializeField] private Weapon _weaponPrefab = null;
 
         [AssetsOnly]
         [SerializeField] private Projectile _projectile = null;
@@ -42,22 +42,30 @@ namespace AMAZON.Combat
 
         public bool HasProjectile() => _projectile != null;
 
-        public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
+        public Weapon Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
             DestroyOldWeapon(rightHand, leftHand);
 
+            Weapon weapon = null;
+
             if (_weaponPrefab)
             {
-                GameObject weapon = Instantiate(_weaponPrefab, GetHandTransform(rightHand, leftHand));
-                weapon.name = weaponName;
+                weapon = Instantiate(_weaponPrefab, GetHandTransform(rightHand, leftHand));
+                weapon.gameObject.name = weaponName;
             }
 
             var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
 
             if (_animatorOverride)
+            {
                 animator.runtimeAnimatorController = _animatorOverride;
+            }
             else if (overrideController != null)
+            {
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+            }
+
+            return weapon;
         }
 
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage)

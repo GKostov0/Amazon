@@ -9,18 +9,18 @@ namespace RPGCharacterAnims.Actions
         public string type;
         public string side;
 
-		public Weapon rightWeapon;
-        public Weapon leftWeapon;
+		public EWeapon rightWeapon;
+        public EWeapon leftWeapon;
 
         public SwitchWeaponContext()
         {
             this.type = "Instant";
             this.side = "None";
-            this.rightWeapon = Weapon.Unarmed;
-            this.leftWeapon = Weapon.Unarmed;
+            this.rightWeapon = EWeapon.Unarmed;
+            this.leftWeapon = EWeapon.Unarmed;
         }
 
-        public SwitchWeaponContext(string type, string side, Weapon rightWeapon = Weapon.Unarmed, Weapon leftWeapon = Weapon.Unarmed)
+        public SwitchWeaponContext(string type, string side, EWeapon rightWeapon = EWeapon.Unarmed, EWeapon leftWeapon = EWeapon.Unarmed)
         {
             this.type = type;
             this.side = side;
@@ -57,14 +57,14 @@ namespace RPGCharacterAnims.Actions
 			bool changeRight = false;
 			bool sheathRight = false;
 			bool unsheathRight = false;
-			Weapon fromRightWeapon = controller.rightWeapon;
-			Weapon toRightWeapon = context.rightWeapon;
+			EWeapon fromRightWeapon = controller.rightWeapon;
+			EWeapon toRightWeapon = context.rightWeapon;
 
 			bool changeLeft = false;
 			bool sheathLeft = false;
 			bool unsheathLeft = false;
-			Weapon fromLeftWeapon = controller.leftWeapon;
-			Weapon toLeftWeapon = context.leftWeapon;
+			EWeapon fromLeftWeapon = controller.leftWeapon;
+			EWeapon toLeftWeapon = context.leftWeapon;
 
 			AnimatorWeapon toAnimatorWeapon = 0;
 
@@ -75,7 +75,7 @@ namespace RPGCharacterAnims.Actions
 					changeRight = true;
 					if (toRightWeapon.Is2HandedWeapon() && !fromLeftWeapon.HasNoWeapon()) {
 						changeLeft = true;
-						toLeftWeapon = Weapon.Unarmed;
+						toLeftWeapon = EWeapon.Unarmed;
 					}
 					break;
 				case "both":
@@ -87,11 +87,11 @@ namespace RPGCharacterAnims.Actions
 			// Force Unarmed if sheathing weapons.
 			if (context.type == "sheath") {
 				if (context.side == "left" || context.side == "dual" || context.side == "both")
-				{ toLeftWeapon = Weapon.Unarmed; }
+				{ toLeftWeapon = EWeapon.Unarmed; }
 				else { toLeftWeapon = fromLeftWeapon; }
 
 				if (context.side == "none" || context.side == "right" || context.side == "dual" || context.side == "both")
-				{ toRightWeapon = Weapon.Unarmed; }
+				{ toRightWeapon = EWeapon.Unarmed; }
 				else { toRightWeapon = fromRightWeapon; }
 			}
 
@@ -162,7 +162,7 @@ namespace RPGCharacterAnims.Actions
 		/// <param name="toRightWeapon">New rightWeapon number.</param>
 		/// <param name="changeLeft">If leftWeapon changed.</param>
 		/// <param name="toLeftWeapon">New leftWeapon number.</param>
-		private void EndSwitch(RPGCharacterController controller, RPGCharacterWeaponController weaponController, bool changeRight, Weapon toRightWeapon, bool changeLeft, Weapon toLeftWeapon)
+		private void EndSwitch(RPGCharacterController controller, RPGCharacterWeaponController weaponController, bool changeRight, EWeapon toRightWeapon, bool changeLeft, EWeapon toLeftWeapon)
 		{
 			// This callback will update the weapons in character controller after all other
 			// coroutines finish.
@@ -177,8 +177,8 @@ namespace RPGCharacterAnims.Actions
 		}
 
 		private static void DebugSwitchWeapon(RPGCharacterWeaponController weaponController, SwitchWeaponContext context, bool changeRight, bool changeLeft, bool sheathRight,
-			bool sheathLeft, bool unsheathRight, bool unsheathLeft, Weapon fromRightWeapon, Weapon toRightWeapon, Weapon fromLeftWeapon,
-			Weapon toLeftWeapon)
+			bool sheathLeft, bool unsheathRight, bool unsheathLeft, EWeapon fromRightWeapon, EWeapon toRightWeapon, EWeapon fromLeftWeapon,
+			EWeapon toLeftWeapon)
 		{
 			if (weaponController.debugSwitchWeaponContext) {
 				Debug.Log("===SwitchWeaponContext===");

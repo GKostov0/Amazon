@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mace
   m_EditorClassIdentifier: 
   _animatorOverride: {fileID: 22100000, guid: e015f37dd564cd7469c1b247d8de7fdf, type: 2}
-  _weaponPrefab: {fileID: 8496016767697721106, guid: 57691e54023cddb439b44ded73c9ba69, type: 3}
+  _weaponPrefab: {fileID: -4941544257829892306, guid: 57691e54023cddb439b44ded73c9ba69, type: 3}
   _projectile: {fileID: 0}
   _weaponRange: 1
   _weaponDamage: {x: 5, y: 5}

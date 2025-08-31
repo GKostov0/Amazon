@@ -9,31 +9,31 @@ namespace RPGCharacterAnims.Extensions
 		/// </summary>
 		/// <param name="weapon">Weapon value to check.</param>
 		/// <returns>True if 2 Handed, false if not.</returns>
-		public static bool Is2HandedWeapon(this Weapon weapon)
-		{ return weapon == Weapon.TwoHandSword; }
+		public static bool Is2HandedWeapon(this EWeapon weapon)
+		{ return weapon == EWeapon.TwoHandSword; }
 
 		/// <summary>
 		/// Checks if the weapon is equipped, i.e not Relaxing, or Unarmed.
 		/// </summary>
 		/// <param name="weapon">Weapon value to check.</param>
 		/// <returns>True or false.</returns>
-		public static bool HasEquippedWeapon(this Weapon weapon)
-		{ return weapon != Weapon.Unarmed; }
+		public static bool HasEquippedWeapon(this EWeapon weapon)
+		{ return weapon != EWeapon.Unarmed; }
 
 		/// <summary>
 		/// Checks if the weapon is empty, i.e Relaxing, or Unarmed.
 		/// </summary>
 		/// <param name="weapon">Weapon value to check.</param>
 		/// <returns>True or false.</returns>
-		public static bool HasNoWeapon(this Weapon weapon)
-		{ return weapon == Weapon.Unarmed; }
+		public static bool HasNoWeapon(this EWeapon weapon)
+		{ return weapon == EWeapon.Unarmed; }
 
 		/// <summary>
 		/// Returns true if the weapon number can use IKHands.
 		/// </summary>
 		/// <param name="weapon">Weapon to test.</param>
-		public static bool IsIKWeapon(this Weapon weapon)
-		{ return weapon == Weapon.TwoHandSword; }
+		public static bool IsIKWeapon(this EWeapon weapon)
+		{ return weapon == EWeapon.TwoHandSword; }
 
 		/// <summary>
 		/// This converts the Weapon into AnimatorWeapon, which is used in the Animator component to determine the
@@ -42,9 +42,9 @@ namespace RPGCharacterAnims.Extensions
 		/// </summary>
 		/// <param name="weapon">Weapon to convert.</param>
 		/// <returns></returns>
-		public static AnimatorWeapon ToAnimatorWeapon(this Weapon weapon)
+		public static AnimatorWeapon ToAnimatorWeapon(this EWeapon weapon)
 		{
-			if (weapon == Weapon.Unarmed || weapon == Weapon.TwoHandSword)
+			if (weapon == EWeapon.Unarmed || weapon == EWeapon.TwoHandSword)
 			{ return ( AnimatorWeapon )weapon; }
 
 			return AnimatorWeapon.UNARMED;
