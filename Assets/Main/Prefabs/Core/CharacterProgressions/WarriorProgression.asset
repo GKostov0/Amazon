@@ -16,7 +16,7 @@ MonoBehaviour:
   <stats>k__BackingField:
   - stat: 1
     levels:
-    - 50
+    - 500
     - 80
     - 120
   - stat: 2

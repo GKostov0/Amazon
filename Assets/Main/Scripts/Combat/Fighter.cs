@@ -137,7 +137,15 @@ namespace AMAZON.Combat
 
         public bool CanAttack(GameObject target)
         {
-            if (target == null) return false;
+            if (target == null)
+            {
+                return false;
+            }
+
+            if (!_mover.CanMoveTo(target.transform.position))
+            {
+                return false;
+            }
 
             target.TryGetComponent<Health>(out var targetHealth);
             return targetHealth != null && !targetHealth.IsDead();

@@ -21,10 +21,6 @@ namespace AMAZON.Control
         [Range(1.0f, 20.0f)]
         [SerializeField] private float _maxNavMeshProjectionDistance = 1.0f;
 
-        [Space(5)]
-        [Range(10.0f, 100.0f)]
-        [SerializeField] private float _maxNavPathLength = 15.0f;
-
         private void Update()
         {
             if (InteractWithUI())return;
@@ -83,6 +79,11 @@ namespace AMAZON.Control
 
             if (didHit)
             {
+                if (!_playerMover.CanMoveTo(target))
+                {
+                    return false;
+                }
+
                 if (Input.GetMouseButton(0))
                 {
                     _playerMover.StartMoveAction(target, 1.0f);
@@ -111,30 +112,7 @@ namespace AMAZON.Control
 
             target = navMeshHit.position;
 
-            // Don't go on rooftops
-            NavMeshPath path = new NavMeshPath();
-            bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, path);
-            if (!hasPath) return false;
-            if (path.status != NavMeshPathStatus.PathComplete) return false;
-
-            // Don't go too far...
-            if (GetPathLength(path) > _maxNavPathLength) return false;
-
             return true;
-        }
-
-        private float GetPathLength(NavMeshPath path)
-        {
-            float result = 0;
-
-            if (path.corners.Length < 2) return result;
-
-            for (int i = 0; i < path.corners.Length - 1; i++)
-            {
-                result += Vector3.Distance(path.corners[i], path.corners[i + 1]);
-            }
-
-            return result;
         }
 
         private Ray GetMouseRay()

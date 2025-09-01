@@ -22,6 +22,8 @@ namespace AMAZON.Attributes
         [SerializeField] private AudioRandomizer _dieAudio;
 
         public ReactiveProperty<float> CurrentHealth { get; private set; } = new ReactiveProperty<float>();
+        public Subject<float> OnTakeDamage { get; private set; } = new Subject<float>();
+
         public ReactiveProperty<float> NormalizedHealth { get; private set; }
 
         private ReactiveProperty<bool> _onRestoreComplete = new ReactiveProperty<bool>(false);
@@ -44,11 +46,14 @@ namespace AMAZON.Attributes
 
         private IEnumerator Start()
         {
-            if (PlayerPrefs.GetInt("save", 0) == 1)
+            if (GetComponent<SaveableEntity>() != null)
             {
-                while (!_onRestoreComplete.Value)
+                if (PlayerPrefs.GetInt("save", 0) == 1)
                 {
-                    yield return null;
+                    while (!_onRestoreComplete.Value)
+                    {
+                        yield return null;
+                    }
                 }
             }
 
@@ -82,6 +87,8 @@ namespace AMAZON.Attributes
             NormalizedHealth.Value = GetHealthFraction();
 
             _damageNumber.Spawn(transform.position + Vector3.up * 2.0f, amount);
+
+            OnTakeDamage.OnNext(amount);
 
             if (CurrentHealth.Value <= 0)
             {

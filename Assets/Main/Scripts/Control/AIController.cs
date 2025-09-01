@@ -4,6 +4,7 @@ using AMAZON.Movement;
 using AMAZON.Attributes;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UniRx;
 
 
 namespace AMAZON.Control
@@ -16,6 +17,7 @@ namespace AMAZON.Control
         [SerializeField] private ActionScheduler _actionScheduler;
         [SerializeField] private PatrolPath _patrolPath;
         [SerializeField][Range(0.0f, 20.0f)] private float _suspicionTime = 4.0f;
+        [SerializeField][Range(0.0f, 20.0f)] private float _aggroTime = 5.0f;
         [SerializeField][Range(0.0f, 20.0f)] private float _waypointTolerance = 1.0f;
 
         [InfoBox("Min Max Dwelling Time")]
@@ -30,6 +32,8 @@ namespace AMAZON.Control
 
         private float _timeSinceLastSawPlayer = Mathf.Infinity;
         private float _timeSinceArrivedAtWaypoint = Mathf.Infinity;
+        private float _timeSinceAggravated = Mathf.Infinity;
+
         private float _currentDwellTime;
         private int _currentWaypointIndex = 0;
 
@@ -42,6 +46,12 @@ namespace AMAZON.Control
         private void Start()
         {
             _startingPosition = transform.position;
+
+            _health.OnTakeDamage.Subscribe(damage => 
+            {
+                Aggravate();
+            })
+            .AddTo(this);
         }
 
         [SerializeField][Range(1.0f, 50.0f)] private float _chaseDistance = 5.0f;
@@ -50,7 +60,7 @@ namespace AMAZON.Control
         {
             if (_health.IsDead()) return;
 
-            if (InAttackRangeOfPlayer() && _fighter.CanAttack(_playerController.gameObject))
+            if (IsAggravated() && _fighter.CanAttack(_playerController.gameObject))
             {
                 AttackBehavour();
             }
@@ -66,10 +76,16 @@ namespace AMAZON.Control
             UpdateTimers();
         }
 
+        private void Aggravate()
+        {
+            _timeSinceAggravated = 0;
+        }
+
         private void UpdateTimers()
         {
             _timeSinceLastSawPlayer += Time.deltaTime;
             _timeSinceArrivedAtWaypoint += Time.deltaTime;
+            _timeSinceAggravated += Time.deltaTime;
         }
 
         private void PatrolBehaviour()
@@ -120,10 +136,10 @@ namespace AMAZON.Control
             _currentWaypointIndex = (_patrolPath.transform.childCount - 1) == _currentWaypointIndex ? 0 : ++_currentWaypointIndex;
         }
 
-        private bool InAttackRangeOfPlayer()
+        private bool IsAggravated()
         {
             float dstanceToPlayer = Vector3.Distance(_playerController.transform.position, transform.position);
-            return dstanceToPlayer <= _chaseDistance;
+            return dstanceToPlayer <= _chaseDistance || _timeSinceAggravated < _aggroTime;
         }
 
         private void OnDrawGizmosSelected()
