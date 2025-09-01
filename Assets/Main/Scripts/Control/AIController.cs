@@ -5,6 +5,7 @@ using AMAZON.Attributes;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UniRx;
+using Sirenix.Utilities;
 
 
 namespace AMAZON.Control
@@ -18,6 +19,7 @@ namespace AMAZON.Control
         [SerializeField] private PatrolPath _patrolPath;
         [SerializeField][Range(0.0f, 20.0f)] private float _suspicionTime = 4.0f;
         [SerializeField][Range(0.0f, 20.0f)] private float _aggroTime = 5.0f;
+        [SerializeField][Range(0.0f, 50.0f)] private float _shoutDistance = 5.0f;
         [SerializeField][Range(0.0f, 20.0f)] private float _waypointTolerance = 1.0f;
 
         [InfoBox("Min Max Dwelling Time")]
@@ -119,6 +121,21 @@ namespace AMAZON.Control
         {
             _timeSinceLastSawPlayer = 0;
             _fighter.Attack(_playerController.gameObject);
+
+            AggravateNearbyEnemies();
+        }
+
+        private void AggravateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, _shoutDistance, Vector3.up, 0.0f);
+
+            hits.ForEach(x =>
+            {
+                if (x.collider.TryGetComponent<AIController>(out var enemy))
+                {
+                    enemy.Aggravate();
+                }
+            });
         }
 
         private bool IsAtWaypoint()

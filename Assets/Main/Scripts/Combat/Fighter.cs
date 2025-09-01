@@ -53,7 +53,7 @@ namespace AMAZON.Combat
             if (Target.Value == null) return;
             if (Target.Value.IsDead()) return;
 
-            if (!IsInRange())
+            if (!IsInRange(Target.Value.transform))
             {
                 _mover.MoveTo(Target.Value.transform.position, 1.0f);
             }
@@ -110,9 +110,9 @@ namespace AMAZON.Combat
             _animator.SetTrigger("attack");
         }
 
-        private bool IsInRange()
+        private bool IsInRange(Transform targetTransform)
         {
-            return Vector3.Distance(transform.position, Target.Value.transform.position) < _currentWeaponSO.GetWeaponRange();
+            return Vector3.Distance(transform.position, targetTransform.position) < _currentWeaponSO.GetWeaponRange();
         }
 
         public void Cancel()
@@ -137,15 +137,8 @@ namespace AMAZON.Combat
 
         public bool CanAttack(GameObject target)
         {
-            if (target == null)
-            {
-                return false;
-            }
-
-            if (!_mover.CanMoveTo(target.transform.position))
-            {
-                return false;
-            }
+            if (target == null) { return false; }
+            if (!_mover.CanMoveTo(target.transform.position) && !IsInRange(target.transform)) { return false; }
 
             target.TryGetComponent<Health>(out var targetHealth);
             return targetHealth != null && !targetHealth.IsDead();

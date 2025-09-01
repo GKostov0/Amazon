@@ -17,6 +17,8 @@ namespace AMAZON.Control
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private CursorsSO _cursors;
 
+        [SerializeField] private float _raycastRadius = 1.0f;
+
         [Space(5)]
         [Range(1.0f, 20.0f)]
         [SerializeField] private float _maxNavMeshProjectionDistance = 1.0f;
@@ -57,7 +59,7 @@ namespace AMAZON.Control
 
         private RaycastHit[] RaycastAllSorted()
         {
-            RaycastHit[] result = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] result = Physics.SphereCastAll(GetMouseRay(), _raycastRadius);
             Array.Sort(result, (a, b) => a.distance.CompareTo(b.distance));
             return result;
         }
