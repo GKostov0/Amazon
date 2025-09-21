@@ -1,7 +1,8 @@
+using AMAZON.Inventories;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AMAZON.UI.Inventory
+namespace AMAZON.UI.Inventories
 {
     [RequireComponent(typeof(Image))]
     public class InventoryItemIcon : MonoBehaviour
@@ -10,7 +11,7 @@ namespace AMAZON.UI.Inventory
 
         public Sprite GetItem() => _iconImage.enabled ? _iconImage.sprite : null;
 
-        public void SetItem(Sprite item)
+        public void SetItem(InventoryItem item)
         {
             if (item == null)
             {
@@ -19,7 +20,7 @@ namespace AMAZON.UI.Inventory
             else
             {
                 _iconImage.enabled = true;
-                _iconImage.sprite = item;
+                _iconImage.sprite = item.GetIcon();
             }
         }
     }

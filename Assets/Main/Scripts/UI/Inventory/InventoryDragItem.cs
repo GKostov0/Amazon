@@ -1,8 +1,8 @@
-using UnityEngine;
+using AMAZON.Inventories;
 
-namespace AMAZON.UI.Inventory
+namespace AMAZON.UI.Inventories
 {
-    public class InventoryDragItem : DragItem<Sprite>
+    public class InventoryDragItem : DragItem<InventoryItem>
     {
 
     }

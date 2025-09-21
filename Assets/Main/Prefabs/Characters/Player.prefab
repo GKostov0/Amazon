@@ -19786,6 +19786,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5983475435390184308, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5553337028734119330}
+    - targetCorrespondingSourceObject: {fileID: 5983475435390184308, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7404627293205618074}
   m_SourcePrefab: {fileID: 100100000, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}
 --- !u!114 &2732909187521092613 stripped
 MonoBehaviour:
@@ -19836,6 +19839,8 @@ MonoBehaviour:
   _health: {fileID: 2732909187521092613}
   _mainCamera: {fileID: 0}
   _cursors: {fileID: 11400000, guid: 9abeddc0490c4a3429a1632100527a72, type: 2}
+  _raycastRadius: 0.2
+  _maxNavMeshProjectionDistance: 1
 --- !u!65 &5487015914950857172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19871,6 +19876,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnRestoreComplete:
     value: 0
+--- !u!114 &7404627293205618074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789433989785067614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c5324f24ca9ef4dba46b977552f9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventorySize: 16
 --- !u!114 &7184668356555708144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7963605236127440346, guid: 8e27462fc01f8da4dbd5f5eccfd97b9d, type: 3}

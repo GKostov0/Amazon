@@ -9,6 +9,12 @@ namespace AMAZON.SceneManagement
     public class SavingWrapper : MonoBehaviour
     {
         [SerializeField] private SavingSystem _savingSystem;
+
+        [Header("Key Bindings")]
+        [SerializeField] private KeyCode _saveKey = KeyCode.F5;
+        [SerializeField] private KeyCode _loadKey = KeyCode.F9;
+        [SerializeField] private KeyCode _deleteKey = KeyCode.Delete;
+
         [SerializeField][Range(0.5f, 5.0f)] private float _fadeOutTime = 0.7f;
 
         private const string _defaultSaveFile = "defaultSave";
@@ -35,9 +41,9 @@ namespace AMAZON.SceneManagement
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.F9)) { Load(); }
-            if (Input.GetKeyUp(KeyCode.F5)) { Save(); }
-            if (Input.GetKeyUp(KeyCode.Delete)) { Delete(); }
+            if (Input.GetKeyUp(_saveKey)) { Save(); }
+            if (Input.GetKeyUp(_loadKey)) { Load(); }
+            if (Input.GetKeyUp(_deleteKey)) { Delete(); }
         }
     }
 }

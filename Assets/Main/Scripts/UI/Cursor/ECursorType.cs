@@ -6,6 +6,7 @@ namespace AMAZON.UI
         Movement = 1,
         Combat = 2,
         UI = 3,
-        Pickup = 4
+        Pickup = 4,
+        FullPickup = 5
     }
 }

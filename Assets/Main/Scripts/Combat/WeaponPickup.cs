@@ -10,7 +10,7 @@ namespace AMAZON.Combat
     {
         [SerializeField] private WeaponSO _weapon = null;
         [SerializeField][Range(1.0f, 20.0f)] private float _respawnTime = 5.0f;
-        [SerializeField][Range(1.0f, 1000.0f)] private float _healthToRestore = 0.0f;
+        [SerializeField][Range(0.0f, 1000.0f)] private float _healthToRestore = 0.0f;
         [SerializeField] private Collider _collider;
 
         public ECursorType GetCursorType() => ECursorType.Pickup;
