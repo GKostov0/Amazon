@@ -18,7 +18,7 @@ namespace AMAZON.UI.Inventories
             // Tuple for Item1 - InventoryItem and Item2 - slot position
             _playerInventory.OnInventoryUpdated.Subscribe(newItem =>
             {
-                if (newItem.Item1 != null || newItem.Item2 > 0)
+                if (newItem.Item1 != null || newItem.Item2 >= 0)
                 {
                     Redraw();
                 }

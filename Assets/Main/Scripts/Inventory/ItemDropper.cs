@@ -14,6 +14,7 @@ namespace AMAZON.Inventories
         public JToken CaptureAsJToken()
         {
             RemoveDestroyedDrops();
+
             var droppedItemsList = new DropRecord[_droppedItems.Count];
             for (int i = 0; i < droppedItemsList.Length; i++)
             {
