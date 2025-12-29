@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639ebfa17d906574dba6b75bd87935e8, type: 3}
   m_Name: Machete
   m_EditorClassIdentifier: 
-  _itemID: 
+  _itemID: fdb5b543-d7a5-43c3-87a5-4f5a67303f8e
   _displayName: Machete
   _description: Sharp swordlike weapon
-  _icon: {fileID: 21300000, guid: f0bf0ebaaa8a4ff40ad93679960cfc53, type: 3}
+  _icon: {fileID: 21300000, guid: 80c7e793e165fe44c8c126ed5c5718ab, type: 3}
+  _pickup: {fileID: 0}
   _isStackable: 0

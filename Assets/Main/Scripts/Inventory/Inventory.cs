@@ -25,7 +25,7 @@ namespace AMAZON.Inventories
         {
             _slots = new InventoryItem[_inventorySize];
 
-            //InventoryItem.GetFromID("a9f68ac1-4737-4049-bd4f-58106c8bd53a").SpawnPickup(transform.position);
+            //InventoryItem.GetFromID("fdb5b543-d7a5-43c3-87a5-4f5a67303f8e").SpawnPickup(transform.position);
         }
 
         public JToken CaptureAsJToken()

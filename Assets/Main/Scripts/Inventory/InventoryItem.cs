@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AMAZON.Inventories
@@ -30,6 +31,9 @@ namespace AMAZON.Inventories
 
         public string GetItemID() => _itemID;
         public Sprite GetIcon() => _icon;
+        public string GetDisplayName() => _displayName;
+
+        public string GetDescription() => _description;
 
         public void OnBeforeSerialize()
         {
