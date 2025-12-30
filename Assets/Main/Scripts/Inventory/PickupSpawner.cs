@@ -7,6 +7,7 @@ namespace AMAZON.Inventories
     public class PickupSpawner : MonoBehaviour, ISaveable
     {
         [SerializeField] private InventoryItem _item = null;
+        // TODO: add quantity
 
         public bool IsCollected() => GetPickup() == null;
 
@@ -37,7 +38,8 @@ namespace AMAZON.Inventories
 
         private void SpawnPickup()
         {
-            var spawnedPickup = _item.SpawnPickup(transform.position);
+            // TODO: add quantity
+            var spawnedPickup = _item.SpawnPickup(transform.position, 1);
             spawnedPickup.transform.SetParent(transform);
         }
 

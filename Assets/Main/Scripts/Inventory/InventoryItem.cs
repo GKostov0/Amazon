@@ -49,11 +49,11 @@ namespace AMAZON.Inventories
 
         }
 
-        public Pickup SpawnPickup(Vector3 position)
+        public Pickup SpawnPickup(Vector3 position, int quantity)
         {
             var pickup = Instantiate(_pickup);
             pickup.transform.position = position;
-            pickup.Setup(this);
+            pickup.Setup(this, quantity);
             return pickup;
         }
 

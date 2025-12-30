@@ -7,10 +7,10 @@ namespace AMAZON.UI.Inventories
     {
         public int MaxAcceptable(InventoryItem item) => int.MaxValue;
 
-        public void AddItems(InventoryItem item, int number)
+        public void AddItems(InventoryItem item, int quantity)
         {
             var player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<ItemDropper>().DropItem(item);
+            player.GetComponent<ItemDropper>().DropItem(item, quantity);
         }
     }
 }

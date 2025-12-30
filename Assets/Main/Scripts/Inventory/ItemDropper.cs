@@ -31,18 +31,20 @@ namespace AMAZON.Inventories
             {
                 var pickupItem = InventoryItem.GetFromID(item.itemID);
                 Vector3 position = item.position.ToVector();
-                SpawnPickup(pickupItem, position);
+                // TODO: update quantity
+                SpawnPickup(pickupItem, 1, position);
             }
         }
 
-        public void DropItem(InventoryItem item)
+        public void DropItem(InventoryItem item, int quantity)
         {
-            SpawnPickup(item, GetDropLocation());
+            SpawnPickup(item, quantity, GetDropLocation());
         }
 
-        public void SpawnPickup(InventoryItem item, Vector3 spawnLocation)
+        public void SpawnPickup(InventoryItem item, int quantity, Vector3 spawnLocation)
         {
-            var pickup = item.SpawnPickup(spawnLocation);
+            //TODO: add quantity
+            var pickup = item.SpawnPickup(spawnLocation, 1);
             _droppedItems.Add(pickup);
         }
 

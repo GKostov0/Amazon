@@ -5,10 +5,15 @@ namespace AMAZON.Inventories
     public class Pickup : MonoBehaviour
     {
         private InventoryItem _item;
+        private int _quantity;
 
         private Inventory _inventory;
 
-        public void Setup(InventoryItem item) => _item = item;
+        public void Setup(InventoryItem item, int quantity)
+        {
+            _item = item;
+            // TODO: add quantity
+        }
 
         public InventoryItem GetItem() => _item;
 
@@ -22,7 +27,8 @@ namespace AMAZON.Inventories
 
         public void PickupItem()
         {
-            bool foundSlot = _inventory.AddToFirstEmptySlot(_item);
+            // TODO: add quantity
+            bool foundSlot = _inventory.AddToFirstEmptySlot(_item, 1);
             if (foundSlot)
             {
                 Destroy(gameObject);

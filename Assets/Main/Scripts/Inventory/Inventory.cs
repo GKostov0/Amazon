@@ -12,18 +12,19 @@ namespace AMAZON.Inventories
         [Tooltip("Allowed size")]
         [SerializeField] private int _inventorySize = 16;
 
-        private InventoryItem[] _slots;
+        private InventorySlot[] _slots;
 
+        // TODO: update quantity
         public Subject<(InventoryItem, int)> OnInventoryUpdated { get; private set; } = new Subject<(InventoryItem, int)>();
 
         public bool HasSpaceFor(InventoryItem item) => FindSlot(item) >= 0;
         private int FindSlot(InventoryItem item) => FindEmptySlot();
         public int GetSize() => _slots.Length;
-        public InventoryItem GetItemInSlot(int slot) => _slots[slot];
+        public InventoryItem GetItemInSlot(int slot) => _slots[slot].Item;
 
         private void Awake()
         {
-            _slots = new InventoryItem[_inventorySize];
+            _slots = new InventorySlot[_inventorySize];
 
             //InventoryItem.GetFromID("fdb5b543-d7a5-43c3-87a5-4f5a67303f8e").SpawnPickup(transform.position);
         }
@@ -33,9 +34,9 @@ namespace AMAZON.Inventories
             var slotStrings = new string[_inventorySize];
             for (int i = 0; i < _inventorySize; i++)
             {
-                if (_slots[i] != null)
+                if (_slots[i].Item != null)
                 {
-                    slotStrings[i] = _slots[i].GetItemID();
+                    slotStrings[i] = _slots[i].Item.GetItemID();
                 }
             }
 
@@ -48,7 +49,7 @@ namespace AMAZON.Inventories
 
             for (int i = 0; i < _inventorySize; i++)
             {
-                _slots[i] = InventoryItem.GetFromID(slotStrings[i]);
+                _slots[i].Item = InventoryItem.GetFromID(slotStrings[i]);
             }
 
             OnInventoryUpdated.OnNext((null, 1));
@@ -64,7 +65,7 @@ namespace AMAZON.Inventories
         {
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (_slots[i] == null)
+                if (_slots[i].Item == null)
                 {
                     return i;
                 }
@@ -72,20 +73,21 @@ namespace AMAZON.Inventories
             return -1;
         }
 
-        public bool AddItemToSlot(int slot, InventoryItem item)
+        public bool AddItemToSlot(int slot, InventoryItem item, int quantity)
         {
-            if (_slots[slot] != null)
+            if (_slots[slot].Item != null)
             {
-                return AddToFirstEmptySlot(item);
+                return AddToFirstEmptySlot(item, quantity);
             }
 
-            _slots[slot] = item;
+            // TODO: update quantity
+            // _slots[slot] = item;
             OnInventoryUpdated.OnNext((item, slot));
 
             return true;
         }
 
-        public bool AddToFirstEmptySlot(InventoryItem item)
+        public bool AddToFirstEmptySlot(InventoryItem item, int quantity)
         {
             int i = FindSlot(item);
 
@@ -94,7 +96,8 @@ namespace AMAZON.Inventories
                 return false;
             }
 
-            _slots[i] = item;
+            // TODO:
+            // _slots[i] = item;
             OnInventoryUpdated.OnNext((item, -1));
 
             return true;
@@ -104,7 +107,7 @@ namespace AMAZON.Inventories
         {
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (ReferenceEquals(_slots[i], item))
+                if (ReferenceEquals(_slots[i].Item, item))
                 {
                     return true;
                 }
@@ -113,9 +116,10 @@ namespace AMAZON.Inventories
             return false;
         }
 
-        public void RemoveFromSlot(int slot)
+        public void RemoveFromSlot(int slot, int quantity)
         {
-            _slots[slot] = null;
+            _slots[slot].Item = null;
+            // TODO: update quantity
             OnInventoryUpdated.OnNext((null, slot));
         }
     }

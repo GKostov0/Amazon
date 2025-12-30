@@ -13,9 +13,9 @@ namespace AMAZON.UI.Inventories
 
         public int GetNumber() => 1;
 
-        public void AddItems(InventoryItem item, int number) => _inventory.AddItemToSlot(_index, item);
+        public void AddItems(InventoryItem item, int quantity) => _inventory.AddItemToSlot(_index, item, quantity);
 
-        public void RemoveItems(int number) => _inventory.RemoveFromSlot(_index);
+        public void RemoveItems(int quantity) => _inventory.RemoveFromSlot(_index, quantity);
 
         public InventoryItem GetItem() => _inventory.GetItemInSlot(_index);
 
